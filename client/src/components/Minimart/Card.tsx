@@ -13,13 +13,13 @@ const MultiActionAreaCard = () => {
       <CardActionArea>
         <CardMedia
           component="img"
-          // height="240"
-          // padding="20px"
-          sx={{ width: 200, height: 200, padding: "20px" }}
+          sx={{ width: 200, height: 200, margin: "auto" }}
           image="https://m.media-amazon.com/images/I/71eWUsNaolL.jpg"
           alt="green iguana"
         />
-        <CardContent>
+        <CardContent
+          sx={{ textAlign: "left", padding: "10px", paddingBottom: "0px" }}
+        >
           <Typography gutterBottom variant="h5" component="div">
             Cup Noodle
           </Typography>

@@ -12,7 +12,8 @@ const CardRow = () => {
 
   const cardStyle = {
     flex: "1", // Allows equal card width
-    maxWidth: "200px", // Optional: Limit max width
+    alignSelf: "stretch", // Allows equal card height
+    // maxWidth: "200px", // Optional: Limit max width
     padding: "5px", // Padding inside the card"
     border: "1px solid #ccc", // Optional: Card border
     borderRadius: "8px", // Optional: Rounded corners
