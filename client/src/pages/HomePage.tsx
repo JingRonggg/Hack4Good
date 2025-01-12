@@ -1,5 +1,4 @@
 import React from "react";
-import CardRow from "components/home/CardRow";
 
 const HomePage: React.FC = () => {
   return (
@@ -10,12 +9,6 @@ const HomePage: React.FC = () => {
       {/* status view of dashboard  */}
       <div style={{}}></div>
       {/* purchase history */}
-      <div style={{}}>
-        <h3>Purchase History</h3>
-        <div style={{}}>
-          <CardRow />
-        </div>
-      </div>
 
       {/* Pending tasks */}
     </div>
