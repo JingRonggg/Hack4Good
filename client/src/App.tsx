@@ -1,32 +1,31 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useAuth } from 'contexts/AuthContext'
+import { Routes, Route } from "react-router";
 import AuthModal from 'components/AuthModal'
 import Header from 'components/Header'
-import logo from 'assets/react.svg'
 import 'styles/ReactWelcome.css'
+import Navbar from 'components/NavBar';
+import HomePage from "./pages/HomePage";
+import StorePage from "./pages/StorePage";
+import RewardsPage from "./pages/RewardsPage";
+import HistoryPage from "./pages/HistoryPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
   return (
     <div className='App'>
       <Header />
-      <ReactWelcome />
       <LoggedInStatus />
       <AuthModal />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/store" element={<StorePage />} />
+        <Route path="/rewards" element={<RewardsPage />} />
+        <Route path="/history" element={<HistoryPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Routes>
+      <Navbar />
     </div>
-  )
-}
-
-const ReactWelcome = () => {
-  return (
-    <Fragment>
-      <img src={logo} className='ReactWelcome-logo' alt='logo' />
-      <p>
-        Edit <code>src/App.tsx</code> and save to reload.
-      </p>
-      <a className='ReactWelcome-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
-        Learn React
-      </a>
-    </Fragment>
   )
 }
 

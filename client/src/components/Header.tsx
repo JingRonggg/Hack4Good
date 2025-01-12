@@ -1,7 +1,6 @@
 import React, { Fragment, type MouseEventHandler, useState } from 'react'
 import { useModalStore } from 'store/useModalStore'
 import { useAuth } from 'contexts/AuthContext'
-import OnlineIndicator from 'components/OnlineIndicator'
 import { AppBar, IconButton, Avatar, Popover, List, ListSubheader, ListItemButton } from '@mui/material'
 
 interface Props {}
@@ -35,12 +34,10 @@ const Header: React.FC<Props> = () => {
 
   return (
     <AppBar className='header' position='static'>
-      <h1>Web App</h1>
+      <h1>MiniMart</h1>
 
       <IconButton onClick={openPopover}>
-        <OnlineIndicator online={isLoggedIn}>
-          <Avatar src={account?.username || ''} alt={account?.username || 'Guest'} />
-        </OnlineIndicator>
+        <Avatar src={account?.username || ''} alt={account?.username || 'Guest'} />
       </IconButton>
 
       <Popover
