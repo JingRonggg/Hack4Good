@@ -1,10 +1,18 @@
 import React from "react";
+import TaskCard from "../components/Task/TaskCard";
+import Bubble from "../components/Task/Bubble";
 
 const RewardsPage: React.FC = () => {
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Rewards Page</h1>
-      <p>View your rewards here</p>
+    <div style={{ width: "70vw" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+        <h1>Tasks</h1>
+        < Bubble />
+      </div>
+      <h3 style={{ color: "#5E5E5E" }}>Pending Tasks</h3>
+      < TaskCard />
+      <h3 style={{ color: "#5E5E5E" }}>New Tasks</h3>
+      < TaskCard />
     </div>
   );
 };
