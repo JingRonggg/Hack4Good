@@ -1,26 +1,32 @@
 import React from "react";
-import { FaMedal, FaCoins } from "react-icons/fa";
+import { FaCoins, FaTrophy } from "react-icons/fa";
 
 const HomePageDashboardCard: React.FC = () => {
   const actionItems = [
     {
       id: "points",
       icon: <FaCoins />,
-      label: "300 Points",
+      number: 300,
+      label: "Points",
     },
     {
       id: "tasks",
-      icon: <FaMedal />,
-      label: "2 Tasks",
+      icon: <FaTrophy />,
+      number: 2,
+      label: "Pending Tasks",
     },
   ];
 
   return (
     <div style={styles.container}>
       {actionItems.map((action) => (
-        <div key={action.id} style={styles.actionCard}>
+        <div key={action.id} style={styles.card}>
           <div style={styles.icon}>{action.icon}</div>
-          <div style={styles.label}>{action.label}</div>
+          <div style={{ padding: "10px" }}></div>
+          <div style={styles.textContainer}>
+            <span style={styles.number}>{action.number}</span>
+            <span style={styles.label}>{action.label}</span>
+          </div>
         </div>
       ))}
     </div>
@@ -30,28 +36,34 @@ const HomePageDashboardCard: React.FC = () => {
 const styles = {
   container: {
     display: "flex",
-    flex: "1 1 calc(100% - 100px)",
     justifyContent: "space-between",
     alignItems: "center",
     gap: "20px",
     width: "100%",
+    margin: "0 auto",
   },
-  actionCard: {
+  card: {
     display: "flex",
-    flex: "1 1 45%",
-    alignSelf: "stretch",
-    justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column" as "column",
-    width: "300px",
-    height: "100px",
-    borderRadius: "10px",
-    backgroundColor: "#EBEBEB",
-    margin: "auto",
+    padding: "10px 20px",
+    backgroundColor: "#F8F8F8",
+    borderRadius: "12px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    width: "48%",
   },
   icon: {
     fontSize: "24px",
+    color: "555",
     marginBottom: "10px",
+  },
+  textContainer: {
+    display: "flex",
+    flexDirection: "column" as "column",
+  },
+  number: {
+    fontSize: "18px",
+    fontWeight: "bold",
+    color: "#333",
   },
   label: {
     fontSize: "16px",
