@@ -25,8 +25,16 @@ const instance = new Schema<I>(
         status: {
             type: String,
             required: true,
-            enum: ['completed', 'pending'],
-            default: 'pending'
+            enum: ['completed', 'pendingCompletion', 'pendingVerification'],
+            default: 'pendingCompletion'
+        },
+        markedCompleted: {
+            type: Date,
+            default: null
+        },
+        verified: {
+            type: Date,
+            default: null
         }
     },
     {

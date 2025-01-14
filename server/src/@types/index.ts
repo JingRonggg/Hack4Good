@@ -25,5 +25,7 @@ export interface Task {
   description: string
   points: number
   users: string[]
-  status: 'completed' | 'pending'
+  status: 'completed' | 'pendingCompletion' | 'pendingVerification'
+  markedCompleted: Date | null
+  verified: Date | null
 }
