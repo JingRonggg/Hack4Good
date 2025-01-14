@@ -38,16 +38,19 @@ const styles: { [key: string]: CSSProperties } = {
         display: "flex",
         flexDirection: "column",
         height: "100vh",
+        width: "100%",
     },
     scrollableContent: {
         flex: 1,
         overflowY: "auto",
         padding: "12px",
+        width: "100%",
     },
     card: {
         border: "1px solid #ccc",
         borderRadius: "10px",
         padding: "12px",
+        paddingRight: "12px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -58,6 +61,7 @@ const styles: { [key: string]: CSSProperties } = {
     content: {
         display: "flex",
         flexDirection: "column" as "column",
+        width: "100%",
     },
     title: {
         fontSize: "25px",
