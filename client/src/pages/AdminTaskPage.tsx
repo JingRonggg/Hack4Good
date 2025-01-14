@@ -5,12 +5,18 @@ import TaskCard from "../components/Admin/TaskCard";
 const AdminTaskPage: React.FC = () => {
   return (
     <div style={{ width: "70vw" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <h1>Tasks</h1>
       </div>
-      < ActionCard />
+      <ActionCard />
       <h3 style={{ color: "#5E5E5E" }}>Tasks Activity Log</h3>
-      < TaskCard />
+      <TaskCard />
     </div>
   );
 };

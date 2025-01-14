@@ -7,7 +7,7 @@ const StorePage: React.FC = () => {
       <h1>Minimart</h1>
       <div style={{}}>
         <h3>Purchase History</h3>
-        <div style={{}}>
+        <div>
           <CardRow />
         </div>
       </div>
