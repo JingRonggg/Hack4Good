@@ -1,7 +1,11 @@
 import React from "react";
 import { CSSProperties } from "react";
+import checkAccepted from "functions/Task/check-accepted";
 
 const DetailedTask = () => {
+    const users = ["user1", "user2"];
+    const isAccepted = checkAccepted(users, "user2");
+
     return (
         <div style={styles.pageContainer}>
             <div style={styles.scrollableContent}>
@@ -27,7 +31,16 @@ const DetailedTask = () => {
                 </div>
             </div>
             <div style={styles.fixedButtonContainer}>
-                <button style={styles.button}>Join Task</button>
+                {isAccepted ? (
+                    <>
+                        <button style={styles.button}>Mark as Completed</button>
+                        <button style={{ ...styles.button, ...styles.secondaryButton }}>
+                            Leave Task
+                        </button>
+                    </>
+                ) : (
+                    <button style={styles.button}>Accept Task</button>
+                )}
             </div>
         </div>
     );
@@ -88,6 +101,8 @@ const styles: { [key: string]: CSSProperties } = {
         padding: "12px",
         backgroundColor: "#fff",
         zIndex: 10,
+        display: "flex",
+        gap: "12px",
     },
     button: {
         backgroundColor: "black",
@@ -97,7 +112,10 @@ const styles: { [key: string]: CSSProperties } = {
         cursor: "pointer",
         border: "none",
         fontSize: "15px",
-        width: "100%",
+        flex: 1,
+    },
+    secondaryButton: {
+        backgroundColor: "gray",
     },
     descriptionContainer: {
         marginTop: "20px",
