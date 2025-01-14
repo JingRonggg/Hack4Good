@@ -4,10 +4,10 @@ import { Request, Response } from 'express';
 export const updateTask = async (req: Request ,res: Response) => {
     try{
         const { id } = req.params;
-        const { task, description, points, status } = req.body;
+        const { task, description, points, users, status } = req.body;
         const taskFound = await Task.findByIdAndUpdate(
             id,
-            { task, description, points, status },
+            { task, description, points, users, status },
             { new: true, runValidators: true }
         )
 
