@@ -9,7 +9,7 @@ import CardActions from "@mui/material/CardActions";
 
 const MultiActionAreaCard = () => {
   return (
-    <Card sx={{ maxWidth: 300 }}>
+    <Card sx={{ alignSelf: "stretch" }}>
       <CardActionArea>
         <CardMedia
           component="img"
