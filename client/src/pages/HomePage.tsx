@@ -1,6 +1,7 @@
 import React from "react";
 import HomePageDashboardCard from "components/Home/Card";
 import PurchaseHistoryCard from "components/Home/PurchaseHistoryCard";
+import PendingTaskCard from "components/Home/PendingTasksCard";
 
 const HomePage: React.FC = () => {
   return (
@@ -19,6 +20,9 @@ const HomePage: React.FC = () => {
       </div>
       {/* Pending tasks */}
       <h3>Pending Tasks</h3>
+      <div>
+        <PendingTaskCard />
+      </div>
     </div>
   );
 };

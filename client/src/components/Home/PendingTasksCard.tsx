@@ -1,27 +1,22 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import CardActions from "@mui/material/CardActions";
 
-const PurchaseHistoryCard = () => {
+const PendingTaskCard = () => {
   const actionItems = [
     {
-      id: "abc123",
-      purchaseDate: "2 January 2025",
-      status: "Pre-Order",
-      media: "https://m.media-amazon.com/images/I/71eWUsNaolL.jpg",
-      label: "Chicken Noodle",
-      point: 0,
+      id: "task1",
+      dateline: "30 January 2025",
+      label: "Complete Math Homework",
+      point: 100,
     },
     {
-      id: "bcd123",
-      purchaseDate: "10 January 2025",
-      status: "Pending Collection",
-      media: "https://m.media-amazon.com/images/I/71eWUsNaolL.jpg",
-      label: "Seafood Noodle",
+      id: "task2",
+      dateline: "10 February 2025",
+      label: "Go for 2.4km Run",
       point: 200,
     },
   ];
@@ -40,27 +35,13 @@ const PurchaseHistoryCard = () => {
             boxShadow: "0px 2px 4px rgba(0,0,0,0.1)", // Subtle shadow
           }}
         >
-          {/* Image Section */}
-          <CardMedia
-            component="img"
-            sx={{ width: 120, height: 120, borderRadius: "8px" }} // Adjust image size
-            image={action.media}
-            alt="Product"
-          />
-
           {/* Content Section */}
           <CardContent sx={{ flex: 1, marginLeft: "16px" }}>
-            <Typography variant="subtitle1" fontWeight="bold">
-              Purchase ID: {action.id}
-            </Typography>
             <Typography variant="h6" fontWeight="bold">
               {action.label}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {action.point} Points
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {action.purchaseDate}
+              {action.dateline}
             </Typography>
           </CardContent>
 
@@ -70,13 +51,13 @@ const PurchaseHistoryCard = () => {
               variant="contained"
               size="small"
               sx={{
-                backgroundColor: "#f5f5f5",
-                color: "#000",
+                backgroundColor: "#000000",
+                color: "#fefefe",
                 boxShadow: "none",
                 "&:hover": { backgroundColor: "#e0e0e0" },
               }}
             >
-              Pre-Order
+              + {action.point} Point
             </Button>
           </CardActions>
         </Card>
@@ -85,4 +66,4 @@ const PurchaseHistoryCard = () => {
   );
 };
 
-export default PurchaseHistoryCard;
+export default PendingTaskCard;
