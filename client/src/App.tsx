@@ -12,6 +12,11 @@ import HistoryPage from "./pages/HistoryPage";
 import ProfilePage from "./pages/ProfilePage";
 import DetailedTaskPage from "./pages/DetailedTaskPage";
 import DetailedListingPage from "./pages/DetailedListingPage";
+import AdminTaskPage from "./pages/AdminTaskPage";
+import AdminManageTasksPage from "./pages/AdminManageTasksPage";
+import AdminEditTasksPage from "./pages/AdminEditTaskPage";
+import AdminAddTasksPage from "./pages/AdminAddTaskPage";
+import AdminVerifyTaskPage from "./pages/AdminVerifyTaskPage";
 
 const App = () => {
   return (
@@ -27,6 +32,11 @@ const App = () => {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/detailed-task" element={<DetailedTaskPage />} />
         <Route path="/detailed-listing" element={<DetailedListingPage />} />
+        <Route path="/admin/tasks" element={<AdminTaskPage />} />
+        <Route path="/admin/manage-tasks" element={<AdminManageTasksPage />} />
+        <Route path="/admin/edit-tasks" element={<AdminEditTasksPage />} />
+        <Route path="/admin/add-tasks" element={<AdminAddTasksPage />} />
+        <Route path="/admin/verify-tasks" element={<AdminVerifyTaskPage />} />
       </Routes>
       <Navbar />
     </div>
