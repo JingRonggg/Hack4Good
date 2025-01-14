@@ -22,6 +22,14 @@ const instance = new Schema<I>(
             required: true,
             enum: ['special', 'regular'],
             default: 'regular'
+        },
+        image: {
+            type: String,
+            required: true
+        },
+        description: {
+            type: String,
+            required: true
         }
     }
 )

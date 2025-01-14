@@ -3,8 +3,8 @@ import { Request, Response } from 'express';
 
 export const createTask = async (req: Request, res: Response) => {
     try {
-        const { task, description, points, status } = req.body;
-        const newTask = new Task({ task, description, points, status });
+        const { task, description, points, status, users } = req.body;
+        const newTask = new Task({ task, description, points, status, users });
         const savedTask = await newTask.save();
         res.status(201).json(savedTask);
     } catch (error) {

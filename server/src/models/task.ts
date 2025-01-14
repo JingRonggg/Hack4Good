@@ -17,6 +17,11 @@ const instance = new Schema<I>(
             type: Number,
             required: true
         },
+        users: {
+            type: [String],
+            required: true,
+            default: []
+        },
         status: {
             type: String,
             required: true,
