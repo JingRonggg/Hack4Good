@@ -1,20 +1,21 @@
-import React from 'react'
-import { useAuth } from 'contexts/AuthContext'
+import React from "react";
+import { useAuth } from "contexts/AuthContext";
 import { Routes, Route } from "react-router";
-import AuthModal from 'components/AuthModal'
-import Header from 'components/Header'
-import 'styles/ReactWelcome.css'
-import Navbar from 'components/NavBar';
+import AuthModal from "components/AuthModal";
+import Header from "components/Header";
+import "styles/ReactWelcome.css";
+import Navbar from "components/NavBar";
 import HomePage from "./pages/HomePage";
 import StorePage from "./pages/StorePage";
 import RewardsPage from "./pages/RewardsPage";
 import HistoryPage from "./pages/HistoryPage";
 import ProfilePage from "./pages/ProfilePage";
-import DetailedTaskPage from "./pages/DetailedTaskPage"
+import DetailedTaskPage from "./pages/DetailedTaskPage";
+import DetailedListingPage from "./pages/DetailedListingPage";
 
 const App = () => {
   return (
-    <div className='App'>
+    <div className="App">
       <Header />
       <LoggedInStatus />
       <AuthModal />
@@ -25,20 +26,30 @@ const App = () => {
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/detailed-task" element={<DetailedTaskPage />} />
+        <Route path="/detailed-listing" element={<DetailedListingPage />} />
       </Routes>
       <Navbar />
     </div>
-  )
-}
+  );
+};
 
 const LoggedInStatus = () => {
-  const { isLoggedIn, account } = useAuth()
+  const { isLoggedIn, account } = useAuth();
 
   if (isLoggedIn && !!account) {
-    return <p>Hey, {account.username}! I'm happy to let you know: you are authenticated!</p>
+    return (
+      <p>
+        Hey, {account.username}! I'm happy to let you know: you are
+        authenticated!
+      </p>
+    );
   }
 
-  return <p>Don't forget to start your backend server, and then authenticate yourself.</p>
-}
+  return (
+    <p>
+      Don't forget to start your backend server, and then authenticate yourself.
+    </p>
+  );
+};
 
-export default App
+export default App;

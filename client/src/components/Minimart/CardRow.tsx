@@ -15,11 +15,11 @@ const CardRow: React.FC = () => {
     flex: "1 1 calc(25% - 20px)", // Allows equal card width
     alignSelf: "stretch", // Allows equal card height
     // maxWidth: "200px", // Optional: Limit max width
-    padding: "5px", // Padding inside the card"
+    padding: "1px", // Padding inside the card"
     margin: "10px",
     border: "1px solid #ccc", // Optional: Card border
     borderRadius: "8px", // Optional: Rounded corners
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // Optional: Shadow
+    // boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // Optional: Shadow
     textAlign: "center" as const, // Center text in the card
   };
 
