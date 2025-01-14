@@ -17,6 +17,10 @@ import AdminManageTasksPage from "./pages/AdminManageTasksPage";
 import AdminEditTasksPage from "./pages/AdminEditTaskPage";
 import AdminAddTasksPage from "./pages/AdminAddTaskPage";
 import AdminVerifyTaskPage from "./pages/AdminVerifyTaskPage";
+import AdminManageUsersPage from "./pages/AdminManageUsersPage";
+import AdminUpdateUserPage from "./pages/AdminUpdateUserPage";
+import AdminChangePasswordPage from "./pages/AdminChangePassword";
+import AdminAddUserPage from "./pages/AdminAddUserPage";
 
 const App = () => {
   return (
@@ -37,6 +41,10 @@ const App = () => {
         <Route path="/admin/edit-tasks" element={<AdminEditTasksPage />} />
         <Route path="/admin/add-tasks" element={<AdminAddTasksPage />} />
         <Route path="/admin/verify-tasks" element={<AdminVerifyTaskPage />} />
+        <Route path="/admin/manage-users" element={<AdminManageUsersPage />} />
+        <Route path="/admin/update-user" element={<AdminUpdateUserPage />} />
+        <Route path="/admin/change-password" element={<AdminChangePasswordPage />} />
+        <Route path="/admin/add-user" element={<AdminAddUserPage />} />
       </Routes>
       <Navbar />
     </div>

@@ -9,9 +9,8 @@ const AdminManageTasksPage: React.FC = () => {
     const navigate = useNavigate();
 
     function handleClick() {
-        navigate("/admin/tasks");
+        navigate("/admin/add-tasks");
     }
-
 
     return(
         <div style={{ width: "70vw"}}>
@@ -23,7 +22,7 @@ const AdminManageTasksPage: React.FC = () => {
             <div style={{ position: "absolute",
                 bottom: "80px",
                 right: "30px"}}>
-                <RoundButton />
+                <RoundButton onClick={handleClick}/>
             </div>
         </div>
     );
