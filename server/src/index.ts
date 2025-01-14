@@ -8,6 +8,7 @@ import authRoutes from './routes/auth'
 import inventoryRoutes from './routes/inventory'
 import transactionRoutes from './routes/transaction'
 import taskRoutes from './routes/task'
+import accountRoutes from './routes/account'
 
 const bootstrap = async () => {
   await mongo.connect()
@@ -27,6 +28,8 @@ const bootstrap = async () => {
   app.use('/transaction', transactionRoutes)
   
   app.use('/task', taskRoutes)
+
+  app.use('/account', accountRoutes)
 
   app.listen(PORT, () => {
     console.log(`✅ Server is listening on port: ${PORT}`)
