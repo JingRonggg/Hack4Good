@@ -1,20 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
 const TaskCard = () => {
-    return (
-      <div style={styles.card}>
-        <div style={styles.content}>
-          <text style={styles.title}>Complete Math Homework</text>
-          <p style={styles.subtitle}>Complete by 30 Jan 2025</p>
-          <div style={styles.reward}>
-            <span style={styles.points}>+500 Points</span>
-          </div>
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate("/detailed-task");
+  }
+  return (
+    <div style={styles.card}>
+      <div style={styles.content}>
+        <text style={styles.title}>Complete Math Homework</text>
+        <p style={styles.subtitle}>Complete by 30 Jan 2025</p>
+        <div style={styles.reward}>
+          <span style={styles.points}>+500 Points</span>
         </div>
-        <button style={styles.button}>More Info</button>
       </div>
-    );
-  };
-  
+      <button onClick={handleClick} style={styles.button}>More Info</button>
+    </div>
+  );
+};
 
 const styles = {
     card: {

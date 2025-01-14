@@ -10,6 +10,7 @@ import StorePage from "./pages/StorePage";
 import RewardsPage from "./pages/RewardsPage";
 import HistoryPage from "./pages/HistoryPage";
 import ProfilePage from "./pages/ProfilePage";
+import DetailedTaskPage from "./pages/DetailedTaskPage"
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/rewards" element={<RewardsPage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/detailed-task" element={<DetailedTaskPage />} />
       </Routes>
       <Navbar />
     </div>
