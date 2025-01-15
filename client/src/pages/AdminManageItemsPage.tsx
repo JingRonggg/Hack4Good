@@ -3,7 +3,7 @@ import RoundButton from "../components/Admin/RoundButton";
 import { useNavigate } from "react-router";
 import { AiOutlineLeft } from "react-icons/ai";
 import ItemCard from "../components/Admin/ItemCard";
-import axios from 'utils/axios'
+import axios from "../utils/axios";
 
 interface InventoryItem {
     _id: string;
@@ -49,6 +49,7 @@ const AdminManageItemsPage: React.FC = () => {
             {items.map((item) => (
                 <ItemCard
                     key={item._id}
+                    id={item._id}
                     name={item.name}
                     quantity={item.quantity}
                     price={item.price}

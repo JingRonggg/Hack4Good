@@ -1,9 +1,11 @@
 import React from "react";
 import Pencil from "../../assets/Pencil.png";
-import { useNavigate } from "react-router";
 import { Typography } from "@mui/material";
+import { FaEdit } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 interface InventoryProps {
+  id: string;
   name: string;
   quantity: number;
   price: number;
@@ -12,11 +14,16 @@ interface InventoryProps {
   description: string;
 }
 
-const ItemCard: React.FC<InventoryProps> = ({ name, quantity, price, status, image, description }) => {
+const ItemCard: React.FC<InventoryProps> = ({ id, name, quantity, price, status, image, description }) => {
   const navigate = useNavigate();
 
-  function handleClick() {
-    navigate("/admin/edit-item");
+  // Define action items
+  const actionItems = [
+    { id: "edit", icon: <FaEdit />, label: "Edit Item", route: `/admin/edit-item/${id}` },
+  ];
+
+  function handleClick(route: string) {
+    navigate(route); // Navigate to the route defined in actionItems
   }
 
   return (
@@ -36,7 +43,15 @@ const ItemCard: React.FC<InventoryProps> = ({ name, quantity, price, status, ima
           </div>
         </div>
         <div style={styles.arrow}>
-          <img src={Pencil} onClick={handleClick} alt="Edit"></img>
+          {actionItems.map((item) => (
+            <img
+              key={item.id}
+              src={Pencil}
+              alt="Edit"
+              onClick={() => handleClick(item.route)} // Use handleClick to navigate
+              style={{ cursor: "pointer" }}
+            />
+          ))}
         </div>
       </div>
       <Typography style={styles.description}>{description}</Typography>
