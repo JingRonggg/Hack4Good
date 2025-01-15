@@ -30,6 +30,7 @@ const PurchaseHistoryCard = () => {
     <div>
       {actionItems.map((action) => (
         <Card
+          key={action.id}
           sx={{
             display: "flex", // Flexbox for horizontal alignment
             flexDirection: { xs: "column", sm: "row" },

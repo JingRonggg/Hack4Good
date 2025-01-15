@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import React from "react";
 import { CSSProperties } from "react";
@@ -10,7 +11,7 @@ const DetailedListing = () => {
       <div style={styles.scrollableContent}>
         <div style={styles.card}>
           <div style={styles.content}>
-            <text style={styles.title}>Cup Noodle</text>
+            <Typography style={styles.title}>Cup Noodle</Typography>
             <CardMedia
               component="img"
               sx={{ width: 300, height: 300, margin: "auto" }}
