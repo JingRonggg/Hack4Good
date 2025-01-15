@@ -15,7 +15,7 @@ const instance = new Schema<I>(
             enum: ['approved', 'pending', 'declined'],
             default: 'pending'
         },
-        user: {
+        username: {
             type: String,
             required: true
         }

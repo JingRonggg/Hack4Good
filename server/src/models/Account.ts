@@ -26,6 +26,11 @@ const instance = new Schema<I>(
       enum: ['user', 'admin'],
       default: 'user',
     },
+    points: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
   },
   {
     timestamps: true,
