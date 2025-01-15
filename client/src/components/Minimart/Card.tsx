@@ -6,32 +6,37 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
+import { useNavigate } from "react-router";
 
 const MultiActionAreaCard = () => {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate("/detailed-listing");
+  }
+
   return (
-    <Card sx={{ maxWidth: 300 }}>
-      <CardActionArea>
+    <Card sx={{ alignSelf: "stretch" }}>
+      <CardActionArea onClick={handleClick}>
         <CardMedia
           component="img"
           sx={{ width: 200, height: 200, margin: "auto" }}
           image="https://m.media-amazon.com/images/I/71eWUsNaolL.jpg"
           alt="green iguana"
         />
-        <CardContent
-          sx={{ textAlign: "left", padding: "10px", paddingBottom: "0px" }}
-        >
+        <CardContent sx={{ textAlign: "left", paddingBottom: "0px" }}>
           <Typography gutterBottom variant="h5" component="div">
             Cup Noodle
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            Cup noodles are yumyum and nice nice. Exchange your points now for
-            unhealthy food!
+            Chicken Flavour. This instant cup noodle contains chicken broth with
+            a savoury flavour and a distinct chicken aroma.
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          0 Points
+          500 Points
         </Button>
       </CardActions>
     </Card>

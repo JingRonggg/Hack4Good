@@ -1,23 +1,24 @@
 import React from "react";
 import MultiActionAreaCard from "./Card";
 
-const CardRow = () => {
-  const containerStyle = {
+const CardRow: React.FC = () => {
+  const containerStyle: React.CSSProperties = {
     display: "flex", // Flexbox layout
+    flexWrap: "wrap", // Wrap items to the next row
     justifyContent: "space-between", // Evenly spaced
     alignItems: "center", // Align items vertically
     gap: "30px", // Space between cards
-    padding: "0px", // Optional: Padding around the container
   };
 
   const cardStyle = {
-    flex: "1", // Allows equal card width
+    flex: "1 1 calc(25% - 20px)", // Allows equal card width
     alignSelf: "stretch", // Allows equal card height
     // maxWidth: "200px", // Optional: Limit max width
-    padding: "5px", // Padding inside the card"
+    padding: "1px", // Padding inside the card"
+    margin: "10px",
     border: "1px solid #ccc", // Optional: Card border
-    borderRadius: "8px", // Optional: Rounded corners
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // Optional: Shadow
+    borderRadius: "10px", // Optional: Rounded corners
+    // boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // Optional: Shadow
     textAlign: "center" as const, // Center text in the card
   };
 
