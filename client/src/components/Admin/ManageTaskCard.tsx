@@ -1,28 +1,27 @@
 import React from "react";
-import Pencil from "../../assets/Pencil.png"
+import Pencil from "../../assets/Pencil.png";
 import { useNavigate } from "react-router";
 
 const TaskCard = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    function handleClick() {
-        navigate("/admin/edit-tasks");
-    }
+  function handleClick() {
+    navigate("/admin/edit-tasks");
+  }
 
-    return (
-        <div style={styles.card}>
-        <div style={styles.header}>
-            <p style={styles.description}>Created on 10 Jan 2025</p>
-            <img style={styles.icon} src={Pencil} onClick={handleClick}>
-            </img>
-        </div>
-        <h2 style={styles.title}>Go for a 2.4km Run</h2>
-        <p style={styles.description}>Complete by 30 Jan 2025</p>
-        <div style={styles.reward}>
-            <span>+500 points</span>
-        </div>
-        </div>
-    );
+  return (
+    <div style={styles.card}>
+      <div style={styles.header}>
+        <p style={styles.description}>Created on 10 Jan 2025</p>
+        <img style={styles.icon} src={Pencil} onClick={handleClick}></img>
+      </div>
+      <h2 style={styles.title}>Go for a 2.4km Run</h2>
+      <p style={styles.description}>Complete by 30 Jan 2025</p>
+      <div style={styles.reward}>
+        <span>+500 points</span>
+      </div>
+    </div>
+  );
 };
 
 const styles = {
@@ -31,7 +30,7 @@ const styles = {
     borderRadius: "8px",
     padding: "16px",
     backgroundColor: "#fff",
-    width: "80vw",
+    width: "100%",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
   },
   header: {
