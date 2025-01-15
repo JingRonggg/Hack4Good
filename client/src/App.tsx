@@ -75,7 +75,6 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <LoggedInStatus />
       <AuthModal />
       <Routes>
         {routes.map(({ path, component: Component, protected: isProtected, admin }) => (
@@ -104,11 +103,6 @@ const App = () => {
       </Routes>
     </div>
   );
-};
-
-const LoggedInStatus = () => {
-  const { isLoggedIn, account } = useAuth();
-  return isLoggedIn && account ? <p>Welcome back, {account.username}!</p> : null;
 };
 
 export default App;
