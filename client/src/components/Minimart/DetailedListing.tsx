@@ -8,31 +8,49 @@ const DetailedListing = () => {
 
   return (
     <div style={styles.pageContainer}>
+      <Typography style={styles.title}>Cup Noodle</Typography>
+
       <div style={styles.scrollableContent}>
         <div style={styles.card}>
+          {/* card media */}
           <div style={styles.content}>
-            <Typography style={styles.title}>Cup Noodle</Typography>
             <CardMedia
               component="img"
-              sx={{ width: 300, height: 300, margin: "auto" }}
+              sx={{ maxWidth: "20%", maxHeight: "20%", margin: "auto" }}
               image="https://m.media-amazon.com/images/I/71eWUsNaolL.jpg"
               alt="Cup Noodle"
             />
             <p style={styles.subtitle}>500 Points</p>
           </div>
         </div>
-
+        {/* description */}
         <div style={styles.descriptionContainer}>
           <p>
             Chicken Flavour. This instant cup noodle contains chicken broth with
             a savoury flavour and a distinct chicken aroma.
           </p>
         </div>
-        <div style={{ display: "flex", alignSelf: "stretch" }}>
-          <h3>
-            Your Points: <br></br> 300 Points
-          </h3>
-          <div style={{ padding: "20px 200px" }}></div>
+
+        {/* action button */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "16px", // Adjust for spacing between elements
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography
+            variant="h6"
+            fontWeight="bold"
+            style={{
+              width: "50%", // Each item gets 50% width
+              textAlign: "left",
+            }}
+          >
+            Your Points: 300 Points
+          </Typography>
           <button style={styles.button}>Purchase</button>
         </div>
       </div>
@@ -44,21 +62,23 @@ const styles: { [key: string]: CSSProperties } = {
   pageContainer: {
     display: "flex",
     flexDirection: "column",
-    height: "100vh",
+    height: "100%",
     width: "100%",
   },
   scrollableContent: {
     flex: 1,
     overflowY: "auto",
-    padding: "12px",
+    height: "100%",
     width: "100%",
   },
   card: {
+    display: "flex",
+    flexDirection: "row" as "row",
+    width: "100%",
     border: "1px solid #ccc",
     borderRadius: "10px",
     padding: "12px",
     paddingRight: "12px",
-    display: "flex",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
@@ -68,7 +88,8 @@ const styles: { [key: string]: CSSProperties } = {
   content: {
     display: "flex",
     flexDirection: "column" as "column",
-    width: "100%",
+    width: "fit-content",
+    alignItems: "center",
   },
   title: {
     fontSize: "25px",
@@ -99,14 +120,14 @@ const styles: { [key: string]: CSSProperties } = {
     gap: "12px",
   },
   button: {
+    width: "fit-content", // Each item gets 50% width
     backgroundColor: "black",
     color: "white",
-    padding: "12px 16px",
-    borderRadius: "8px",
-    cursor: "pointer",
+    padding: "15px 30px",
     border: "none",
-    fontSize: "15px",
-    flex: 1,
+    borderRadius: "4px",
+    textAlign: "center",
+    cursor: "pointer",
   },
   secondaryButton: {
     backgroundColor: "gray",

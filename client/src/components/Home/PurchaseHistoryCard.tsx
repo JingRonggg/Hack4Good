@@ -103,15 +103,4 @@ const PurchaseHistoryCard = () => {
   );
 };
 
-// const styles = {
-//   preorder: {
-//     display: "flex",
-//     justifyContent: "space-between",
-//     alignItems: "center",
-//     gap: "20px",
-//     width: "100%",
-//     margin: "0 auto",
-//   },
-// };
-
 export default PurchaseHistoryCard;

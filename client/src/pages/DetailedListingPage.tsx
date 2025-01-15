@@ -3,7 +3,7 @@ import DetailedListing from "../components/Minimart/DetailedListing";
 
 const DetailedListingPage: React.FC = () => {
   return (
-    <div>
+    <div style={{ width: "90%" }}>
       <DetailedListing />
     </div>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import { CSSProperties } from "react";
 import checkAccepted from "functions/Task/check-accepted";
 import { FaCoins } from "react-icons/fa";
+import { Typography } from "@mui/material";
 
 const DetailedTask = () => {
   const users = ["user1", "user2"];
@@ -12,7 +13,7 @@ const DetailedTask = () => {
       <div style={styles.scrollableContent}>
         <div style={styles.card}>
           <div style={styles.content}>
-            <text style={styles.title}>Complete Math Homework</text>
+            <Typography style={styles.title}>Complete Math Homework</Typography>
             <p style={styles.subtitle}>Complete by 30 Jan 2025</p>
             <div style={styles.reward}>
               <span style={styles.points}>+500 </span>
@@ -62,6 +63,7 @@ const styles: { [key: string]: CSSProperties } = {
     overflowY: "auto",
     padding: "12px",
     width: "100%",
+    alignItems: "center",
   },
   card: {
     border: "1px solid #ccc",
@@ -98,6 +100,8 @@ const styles: { [key: string]: CSSProperties } = {
     fontWeight: "bold",
   },
   fixedButtonContainer: {
+    width: "90%",
+    margin: "0 auto",
     position: "fixed",
     bottom: "56px",
     left: 0,
