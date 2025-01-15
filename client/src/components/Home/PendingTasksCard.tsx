@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import CardActions from "@mui/material/CardActions";
+import { FaCoins } from "react-icons/fa";
 
 const PendingTaskCard = () => {
   const actionItems = [
@@ -25,6 +26,7 @@ const PendingTaskCard = () => {
     <div>
       {actionItems.map((action) => (
         <Card
+          key={action.id}
           sx={{
             display: "flex", // Flexbox for horizontal alignment
             alignItems: "center",
@@ -57,7 +59,8 @@ const PendingTaskCard = () => {
                 "&:hover": { backgroundColor: "#e0e0e0" },
               }}
             >
-              + {action.point} Point
+              + {action.point} <span style={{ padding: "5px" }}></span>
+              <FaCoins />
             </Button>
           </CardActions>
         </Card>
