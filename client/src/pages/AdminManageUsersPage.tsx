@@ -12,7 +12,7 @@ const AdminManageUsersPage: React.FC = () => {
     }
 
     return (
-    <div style={{ width: "70vw" }}>
+    <div style={{ width: "70vw", paddingBottom: "70px"  }}>
         <h1>Manage Users</h1>  
         <UserProfileCard />    
         <div style={{ position: "absolute",

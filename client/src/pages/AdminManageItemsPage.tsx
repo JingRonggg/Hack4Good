@@ -17,7 +17,7 @@ const AdminManageItemsPage: React.FC = () => {
     }
 
     return (
-    <div style={{ width: "70vw" }}>
+    <div style={{ width: "70vw", paddingBottom: "70px"  }}>
         <div style={{ display: "flex", alignItems: "center",  marginBottom: "15px" }}>
             <AiOutlineLeft style={{ marginRight:"10px", cursor: "pointer" }} onClick={handleClick} />
             <h1 style={{ margin: "0 auto" }}>Manage Items</h1>

@@ -13,7 +13,7 @@ const AdminManageTasksPage: React.FC = () => {
     }
 
     return(
-        <div style={{ width: "70vw"}}>
+        <div style={{ width: "70vw", paddingBottom: "100px" }}>
             <div style={{ display: "flex", alignItems: "center",  marginBottom: "15px" }}>
                 <AiOutlineLeft style={{ marginRight:"10px", cursor: "pointer" }} onClick={handleClick} />
                 <h1 style={{ margin: "0 auto" }}>Manage Tasks</h1>
@@ -28,4 +28,4 @@ const AdminManageTasksPage: React.FC = () => {
     );
 };
 
-export default AdminManageTasksPage
+export default AdminManageTasksPage;

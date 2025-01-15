@@ -31,7 +31,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh" }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh", paddingBottom: "70px"  }}>
       <h1>Login</h1>
       <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px", width: "300px" }}>
         <TextField
