@@ -17,6 +17,15 @@ import AdminManageTasksPage from "./pages/AdminManageTasksPage";
 import AdminEditTasksPage from "./pages/AdminEditTaskPage";
 import AdminAddTasksPage from "./pages/AdminAddTaskPage";
 import AdminVerifyTaskPage from "./pages/AdminVerifyTaskPage";
+import AdminManageUsersPage from "./pages/AdminManageUsersPage";
+import AdminUpdateUserPage from "./pages/AdminUpdateUserPage";
+import AdminChangePasswordPage from "./pages/AdminChangePassword";
+import AdminAddUserPage from "./pages/AdminAddUserPage";
+import AdminStorePage from "./pages/AdminStorePage";
+import AdminManageItemsPage from "./pages/AdminManageItemsPage";
+import AdminEditItemPage from "./pages/AdminEditItemPage";
+import AdminAddItemPage from "./pages/AdminAddItemPage";
+import AdminApprovePurchasesPage from "./pages/AdminApprovePurchasesPage";
 
 const App = () => {
   return (
@@ -37,6 +46,15 @@ const App = () => {
         <Route path="/admin/edit-tasks" element={<AdminEditTasksPage />} />
         <Route path="/admin/add-tasks" element={<AdminAddTasksPage />} />
         <Route path="/admin/verify-tasks" element={<AdminVerifyTaskPage />} />
+        <Route path="/admin/manage-users" element={<AdminManageUsersPage />} />
+        <Route path="/admin/update-user" element={<AdminUpdateUserPage />} />
+        <Route path="/admin/change-password" element={<AdminChangePasswordPage />} />
+        <Route path="/admin/add-user" element={<AdminAddUserPage />} />
+        <Route path="/admin/store" element={<AdminStorePage />} />
+        <Route path="/admin/manage-items" element={<AdminManageItemsPage />} />
+        <Route path="/admin/edit-item" element={<AdminEditItemPage />} />
+        <Route path="/admin/add-item" element={<AdminAddItemPage />} />
+        <Route path="/admin/approve-purchases" element={<AdminApprovePurchasesPage />} />
       </Routes>
       <Navbar />
     </div>

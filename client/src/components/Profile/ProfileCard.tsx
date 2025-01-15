@@ -4,12 +4,12 @@ import icon from "../../assets/Avatar.jpg"
 const TaskCard = () => {
     return (
       <div style={styles.card}>
-        <div style={styles.content}>
-            <div style={styles.header}>
-                <img src={icon} style={styles.icon}/>
+        <div style={styles.header}>
+          <img src={icon} style={styles.icon}/>
+            <div style={styles.content}>
                 <text style={styles.title}>Jasper</text>
+                <text style={styles.subtitle}>Resident | +65 9123 4567</text>
             </div>
-          <p style={styles.subtitle}>Resident | +65 9123 4567</p>
         </div>
       </div>    
     );
@@ -23,10 +23,11 @@ const styles = {
       padding: "12px",
       display: "flex",
       justifyContent: "space-between",
-      alignItems: "center",
+      alignItems: "column",
       backgroundColor: "#fff",
     },
     content: {
+      display: "flex",
       flexDirection: "column" as "column",
     },
     header:{
