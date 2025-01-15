@@ -1,8 +1,7 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const UploadPhoto: React.FC = () => {
-
   return (
     <Box
       sx={{
@@ -21,8 +20,11 @@ const UploadPhoto: React.FC = () => {
       }}
       onClick={() => document.getElementById("file-input")?.click()}
     >
-      <text style={{ fontSize: 30, color: "#000" }} /> + <text/>
-      <text style={{ fontSize: 30, color: "#000" }} /> Upload Product Photo <text/>
+      <Typography style={{ fontSize: 30, color: "#000" }}> + </Typography>
+      <Typography style={{ fontSize: 30, color: "#000" }}>
+        {" "}
+        Upload Product Photo{" "}
+      </Typography>
       <input
         id="file-input"
         type="file"
