@@ -5,6 +5,7 @@ import AuthModal from "components/AuthModal";
 import Header from "components/Header";
 import "styles/ReactWelcome.css";
 import Navbar from "components/NavBar";
+import AdminNavbar from "components/AdminNavBar";
 import HomePage from "./pages/HomePage";
 import StorePage from "./pages/StorePage";
 import RewardsPage from "./pages/RewardsPage";
@@ -29,34 +30,45 @@ import AdminApprovePurchasesPage from "./pages/AdminApprovePurchasesPage";
 import LoginPage from "./pages/LoginPage";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
-  const { isLoggedIn } = useAuth();
-  return isLoggedIn ? <>{children}</> : <Navigate to="/login" replace />;
+  const { isLoggedIn, account } = useAuth();
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+  if (account?.role === 'admin') {
+    return <Navigate to="/admin/store" replace />;
+  }
+  return <>{children}</>;
+};
+
+const AdminRoute = ({ children }: { children: ReactNode }) => {
+  const { isLoggedIn, account } = useAuth();
+  return isLoggedIn && account?.role === 'admin' ? <>{children}</> : <Navigate to="/login" replace />;
 };
 
 // Define routes in an array with component and path
 const routes = [
-  { path: "/login", component: LoginPage, protected: false },
-  { path: "/", component: HomePage, protected: true },
-  { path: "/store", component: StorePage, protected: true },
-  { path: "/rewards", component: RewardsPage, protected: true },
-  { path: "/history", component: HistoryPage, protected: true },
-  { path: "/profile", component: ProfilePage, protected: true },
-  { path: "/detailed-task", component: DetailedTaskPage, protected: true },
-  { path: "/detailed-listing", component: DetailedListingPage, protected: true },
-  { path: "/admin/tasks", component: AdminTaskPage, protected: true },
-  { path: "/admin/manage-tasks", component: AdminManageTasksPage, protected: true },
-  { path: "/admin/edit-tasks", component: AdminEditTasksPage, protected: true },
-  { path: "/admin/add-tasks", component: AdminAddTasksPage, protected: true },
-  { path: "/admin/verify-tasks", component: AdminVerifyTaskPage, protected: true },
-  { path: "/admin/manage-users", component: AdminManageUsersPage, protected: true },
-  { path: "/admin/update-user", component: AdminUpdateUserPage, protected: true },
-  { path: "/admin/change-password", component: AdminChangePasswordPage, protected: true },
-  { path: "/admin/add-user", component: AdminAddUserPage, protected: true },
-  { path: "/admin/store", component: AdminStorePage, protected: true },
-  { path: "/admin/manage-items", component: AdminManageItemsPage, protected: true },
-  { path: "/admin/edit-item", component: AdminEditItemPage, protected: true },
-  { path: "/admin/add-item", component: AdminAddItemPage, protected: true },
-  { path: "/admin/approve-purchases", component: AdminApprovePurchasesPage, protected: true },
+  { path: "/login", component: LoginPage, protected: false, admin: false },
+  { path: "/", component: HomePage, protected: true, admin: false },
+  { path: "/store", component: StorePage, protected: true, admin: false },
+  { path: "/rewards", component: RewardsPage, protected: true, admin: false },
+  { path: "/history", component: HistoryPage, protected: true, admin: false },
+  { path: "/profile", component: ProfilePage, protected: true, admin: false },
+  { path: "/detailed-task", component: DetailedTaskPage, protected: true, admin: false },
+  { path: "/detailed-listing", component: DetailedListingPage, protected: true, admin: false },
+  { path: "/admin/tasks", component: AdminTaskPage, protected: true, admin: true },
+  { path: "/admin/manage-tasks", component: AdminManageTasksPage, protected: true, admin: true },
+  { path: "/admin/edit-tasks", component: AdminEditTasksPage, protected: true, admin: true },
+  { path: "/admin/add-tasks", component: AdminAddTasksPage, protected: true, admin: true },
+  { path: "/admin/verify-tasks", component: AdminVerifyTaskPage, protected: true, admin: true },
+  { path: "/admin/manage-users", component: AdminManageUsersPage, protected: true, admin: true },
+  { path: "/admin/update-user", component: AdminUpdateUserPage, protected: true, admin: true },
+  { path: "/admin/change-password", component: AdminChangePasswordPage, protected: true, admin: true },
+  { path: "/admin/add-user", component: AdminAddUserPage, protected: true, admin: true },
+  { path: "/admin/store", component: AdminStorePage, protected: true, admin: true },
+  { path: "/admin/manage-items", component: AdminManageItemsPage, protected: true, admin: true },
+  { path: "/admin/edit-item", component: AdminEditItemPage, protected: true, admin: true },
+  { path: "/admin/add-item", component: AdminAddItemPage, protected: true, admin: true },
+  { path: "/admin/approve-purchases", component: AdminApprovePurchasesPage, protected: true, admin: true },
 ];
 
 const App = () => {
@@ -66,15 +78,30 @@ const App = () => {
       <LoggedInStatus />
       <AuthModal />
       <Routes>
-        {routes.map(({ path, component: Component, protected: isProtected }) => (
+        {routes.map(({ path, component: Component, protected: isProtected, admin }) => (
           <Route
             key={path}
             path={path}
-            element={isProtected ? <ProtectedRoute><Component /></ProtectedRoute> : <Component />}
+            element={
+              isProtected ? (
+                admin ? (
+                  <AdminRoute>
+                    <Component />
+                    <AdminNavbar />
+                  </AdminRoute>
+                ) : (
+                  <ProtectedRoute>
+                    <Component />
+                    <Navbar />
+                  </ProtectedRoute>
+                )
+              ) : (
+                <Component />
+              )
+            }
           />
         ))}
       </Routes>
-      <Navbar />
     </div>
   );
 };
