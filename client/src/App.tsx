@@ -66,7 +66,7 @@ const routes = [
   { path: "/admin/add-user", component: AdminAddUserPage, protected: true, admin: true },
   { path: "/admin/store", component: AdminStorePage, protected: true, admin: true },
   { path: "/admin/manage-items", component: AdminManageItemsPage, protected: true, admin: true },
-  { path: "/admin/edit-item", component: AdminEditItemPage, protected: true, admin: true },
+  { path: "/admin/edit-item/:id", component: AdminEditItemPage, protected: true, admin: true },
   { path: "/admin/add-item", component: AdminAddItemPage, protected: true, admin: true },
   { path: "/admin/approve-purchases", component: AdminApprovePurchasesPage, protected: true, admin: true },
 ];
