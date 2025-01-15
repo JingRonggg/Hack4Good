@@ -1,20 +1,27 @@
 import React from "react";
 
-const TaskCard = () => {
+const PurchasesCard = () => {
 
     return (
         <div style={styles.card}>
         <div style={styles.header}>
-            <p style={styles.description}>Participant: Jasper</p>
+            <p style={styles.description}>Purchase ID: 3456123</p>
+            <p style={styles.description}>30 Jan 2025</p>
         </div>
-        <h2 style={styles.title}>Go for a 2.4km Run</h2>
-        <p style={styles.description}>Complete by 30 Jan 2025</p>
+        <div style={{display: "flex", gap: "10px", marginBottom: "10px"}}>
+        <img src={"https://m.media-amazon.com/images/I/71eWUsNaolL.jpg"} style={styles.icon}/>
+        <div >
+            <p style={styles.description}>0 points</p>
+            <h2 style={styles.title}>Nissin Cup Noodles</h2>
+            <p style={styles.description}>Purchased by Jasper</p>
+        </div>
+        </div>
         <div style={{display: "flex", justifyContent:"space-between"}}>
             <div style={styles.invalid}>
-                <span>Completion Invalid</span>
+                <span>Cancel Purchase</span>
             </div>
             <div style={styles.valid}>
-                <span>Task Verified</span>
+                <span>Item Collected</span>
             </div>
         </div>
         </div>
@@ -34,6 +41,10 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  icon: {
+    width: 100, 
+    height: 100, 
   },
   title: {
     fontSize: "18px",
@@ -73,4 +84,4 @@ const styles = {
   },
 };
 
-export default TaskCard;
+export default PurchasesCard;
