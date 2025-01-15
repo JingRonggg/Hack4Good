@@ -7,7 +7,8 @@ const instance = new Schema<I>(
     {
         name: {
             type: String,
-            required: true
+            required: true,
+            unqiue: true
         },
         quantity: {
             type: Number,

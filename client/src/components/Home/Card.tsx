@@ -1,18 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaCoins, FaTrophy } from "react-icons/fa";
+import { useAuth } from "contexts/AuthContext";
+import axios from 'utils/axios'
 
 const HomePageDashboardCard: React.FC = () => {
+  const { account } = useAuth();
+  const [taskCount, setTaskCount] = useState<number | null>(null);
+
+  const getNumberOfTasks = async () => {
+    try{
+      const { data } = await axios.get(`/task/username/${account?.username}`);
+      setTaskCount(data.length);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    if (account?.username) {
+      getNumberOfTasks();
+    }
+  }, [account?.username]);
   const actionItems = [
     {
       id: "points",
       icon: <FaCoins />,
-      number: 300,
+      number: account?.points,
       label: "Points",
     },
     {
       id: "tasks",
       icon: <FaTrophy />,
-      number: 2,
+      number: taskCount,
       label: "Pending Tasks",
     },
   ];
