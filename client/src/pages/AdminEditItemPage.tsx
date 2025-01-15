@@ -51,6 +51,19 @@ const AdminEditItemPage: React.FC = () => {
         }
     };
 
+    const handleDelete = async () => {
+        try {
+            if (!id) {
+                throw new Error("Item ID is missing");
+            }
+            await axios.delete(`/inventory/${id}`);
+            navigate("/admin/manage-items");
+        } catch (error) {
+            console.error("Error deleting item:", error);
+            setError("Failed to delete item. Please try again.");
+        }
+    };
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
         setItemData({ ...itemData, [id]: value });
@@ -132,6 +145,19 @@ const AdminEditItemPage: React.FC = () => {
                 }}
             >
                 Update Item
+            </Button>
+            <Button
+                onClick={handleDelete}
+                style={{
+                    width: "70vw",
+                    border: "1px solid",
+                    backgroundColor: "red",
+                    color: "white",
+                    borderRadius: "8px",
+                    marginTop: "15px",
+                }}
+            >
+                Delete Item
             </Button>
         </div>
     );
