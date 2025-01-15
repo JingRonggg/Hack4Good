@@ -1,6 +1,6 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useAuth } from "contexts/AuthContext";
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import AuthModal from "components/AuthModal";
 import Header from "components/Header";
 import "styles/ReactWelcome.css";
@@ -26,6 +26,38 @@ import AdminManageItemsPage from "./pages/AdminManageItemsPage";
 import AdminEditItemPage from "./pages/AdminEditItemPage";
 import AdminAddItemPage from "./pages/AdminAddItemPage";
 import AdminApprovePurchasesPage from "./pages/AdminApprovePurchasesPage";
+import LoginPage from "./pages/LoginPage";
+
+const ProtectedRoute = ({ children }: { children: ReactNode }) => {
+  const { isLoggedIn } = useAuth();
+  return isLoggedIn ? <>{children}</> : <Navigate to="/login" replace />;
+};
+
+// Define routes in an array with component and path
+const routes = [
+  { path: "/login", component: LoginPage, protected: false },
+  { path: "/", component: HomePage, protected: true },
+  { path: "/store", component: StorePage, protected: true },
+  { path: "/rewards", component: RewardsPage, protected: true },
+  { path: "/history", component: HistoryPage, protected: true },
+  { path: "/profile", component: ProfilePage, protected: true },
+  { path: "/detailed-task", component: DetailedTaskPage, protected: true },
+  { path: "/detailed-listing", component: DetailedListingPage, protected: true },
+  { path: "/admin/tasks", component: AdminTaskPage, protected: true },
+  { path: "/admin/manage-tasks", component: AdminManageTasksPage, protected: true },
+  { path: "/admin/edit-tasks", component: AdminEditTasksPage, protected: true },
+  { path: "/admin/add-tasks", component: AdminAddTasksPage, protected: true },
+  { path: "/admin/verify-tasks", component: AdminVerifyTaskPage, protected: true },
+  { path: "/admin/manage-users", component: AdminManageUsersPage, protected: true },
+  { path: "/admin/update-user", component: AdminUpdateUserPage, protected: true },
+  { path: "/admin/change-password", component: AdminChangePasswordPage, protected: true },
+  { path: "/admin/add-user", component: AdminAddUserPage, protected: true },
+  { path: "/admin/store", component: AdminStorePage, protected: true },
+  { path: "/admin/manage-items", component: AdminManageItemsPage, protected: true },
+  { path: "/admin/edit-item", component: AdminEditItemPage, protected: true },
+  { path: "/admin/add-item", component: AdminAddItemPage, protected: true },
+  { path: "/admin/approve-purchases", component: AdminApprovePurchasesPage, protected: true },
+];
 
 const App = () => {
   return (
@@ -34,27 +66,13 @@ const App = () => {
       <LoggedInStatus />
       <AuthModal />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/store" element={<StorePage />} />
-        <Route path="/rewards" element={<RewardsPage />} />
-        <Route path="/history" element={<HistoryPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/detailed-task" element={<DetailedTaskPage />} />
-        <Route path="/detailed-listing" element={<DetailedListingPage />} />
-        <Route path="/admin/tasks" element={<AdminTaskPage />} />
-        <Route path="/admin/manage-tasks" element={<AdminManageTasksPage />} />
-        <Route path="/admin/edit-tasks" element={<AdminEditTasksPage />} />
-        <Route path="/admin/add-tasks" element={<AdminAddTasksPage />} />
-        <Route path="/admin/verify-tasks" element={<AdminVerifyTaskPage />} />
-        <Route path="/admin/manage-users" element={<AdminManageUsersPage />} />
-        <Route path="/admin/update-user" element={<AdminUpdateUserPage />} />
-        <Route path="/admin/change-password" element={<AdminChangePasswordPage />} />
-        <Route path="/admin/add-user" element={<AdminAddUserPage />} />
-        <Route path="/admin/store" element={<AdminStorePage />} />
-        <Route path="/admin/manage-items" element={<AdminManageItemsPage />} />
-        <Route path="/admin/edit-item" element={<AdminEditItemPage />} />
-        <Route path="/admin/add-item" element={<AdminAddItemPage />} />
-        <Route path="/admin/approve-purchases" element={<AdminApprovePurchasesPage />} />
+        {routes.map(({ path, component: Component, protected: isProtected }) => (
+          <Route
+            key={path}
+            path={path}
+            element={isProtected ? <ProtectedRoute><Component /></ProtectedRoute> : <Component />}
+          />
+        ))}
       </Routes>
       <Navbar />
     </div>
@@ -63,21 +81,7 @@ const App = () => {
 
 const LoggedInStatus = () => {
   const { isLoggedIn, account } = useAuth();
-
-  if (isLoggedIn && !!account) {
-    return (
-      <p>
-        Hey, {account.username}! I'm happy to let you know: you are
-        authenticated!
-      </p>
-    );
-  }
-
-  return (
-    <p>
-      Don't forget to start your backend server, and then authenticate yourself.
-    </p>
-  );
+  return isLoggedIn && account ? <p>Welcome back, {account.username}!</p> : null;
 };
 
 export default App;
