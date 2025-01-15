@@ -1,5 +1,5 @@
 import React from "react";
-import DetailedTask from "../components/Task/DetailedTask";
+import DetailedTask from "../../components/Task/DetailedTask";
 
 const DetailedTaskPage: React.FC = () => {
   return (

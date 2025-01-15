@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import ActionCard from "../components/Admin/ActionCard";
+import ActionCard from "../../components/Admin/ActionCard";
 import { FaEdit, FaCheckSquare } from "react-icons/fa";
 import { AiOutlineDown, AiOutlineRight } from "react-icons/ai";
-import TransactionHistoryCard from "../components/Admin/TransactionHistoryCard";
-import InventoryCard from "../components/Admin/InventoryCard";
+import TransactionHistoryCard from "../../components/Admin/TransactionHistoryCard";
+import InventoryCard from "../../components/Admin/InventoryCard";
 
 const AdminStorePage: React.FC = () => {
   const actionItems = [
