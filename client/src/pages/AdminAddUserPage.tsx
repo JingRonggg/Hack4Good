@@ -17,7 +17,7 @@ const AdminAddUserPage: React.FC = () => {
       };
 
     return (
-        <div style={{ width: "70vw", margin: "0 auto" }}>
+        <div style={{ width: "70vw", margin: "0 auto", paddingBottom: "70px"  }}>
             <div style={{ display: "flex", alignItems: "center", marginBottom: "15px" }}>
                 <AiOutlineLeft style={{ marginRight: "10px", cursor: "pointer" }} onClick={handleClick} />
                 <h1 style={{ margin: "0", flexGrow: 1, textAlign: "center" }}>Add User</h1>

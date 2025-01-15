@@ -4,7 +4,7 @@ import Bubble from "../components/Task/Bubble";
 
 const RewardsPage: React.FC = () => {
   return (
-    <div style={{ width: "70vw" }}>
+    <div style={{ width: "70vw", paddingBottom: "70px"  }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
         <h1>Tasks</h1>
         < Bubble />

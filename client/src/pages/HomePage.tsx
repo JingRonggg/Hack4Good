@@ -5,7 +5,7 @@ import PendingTaskCard from "components/Home/PendingTasksCard";
 
 const HomePage: React.FC = () => {
   return (
-    <div style={{ padding: "20px", width: "90%" }}>
+    <div style={{ padding: "20px", width: "90%", paddingBottom: "70px"  }}>
       <h1>
         Hello <i>name</i>
       </h1>

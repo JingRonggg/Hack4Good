@@ -22,7 +22,7 @@ const AdminStorePage: React.FC = () => {
       };
 
   return (
-    <div style={{ width: "70vw" }}>
+    <div style={{ width: "70vw", paddingBottom: "70px"  }}>
       <div
         style={{
           display: "flex",
