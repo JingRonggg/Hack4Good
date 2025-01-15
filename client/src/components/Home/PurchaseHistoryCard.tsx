@@ -66,23 +66,49 @@ const PurchaseHistoryCard = () => {
 
           {/* Actions Section */}
           <CardActions>
-            <Button
-              variant="contained"
-              size="small"
-              sx={{
-                backgroundColor: "#f5f5f5",
-                color: "#000",
-                boxShadow: "none",
-                "&:hover": { backgroundColor: "#e0e0e0" },
-              }}
-            >
-              Pre-Order
-            </Button>
+            {action.status === "Pre-Order" && (
+              <Button
+                variant="contained"
+                size="small"
+                sx={{
+                  backgroundColor: "#EBEBEB",
+                  color: "#222222",
+                  boxShadow: "none",
+                }}
+              >
+                Pre-Order
+              </Button>
+            )}
+            {action.status === "Pending Collection" && (
+              <Button
+                variant="contained"
+                size="small"
+                sx={{
+                  // to do: make color different for the different status
+                  backgroundColor: "#FEF0C7",
+                  color: "#DC6803",
+                  boxShadow: "none",
+                }}
+              >
+                {action.status}
+              </Button>
+            )}
           </CardActions>
         </Card>
       ))}
     </div>
   );
 };
+
+// const styles = {
+//   preorder: {
+//     display: "flex",
+//     justifyContent: "space-between",
+//     alignItems: "center",
+//     gap: "20px",
+//     width: "100%",
+//     margin: "0 auto",
+//   },
+// };
 
 export default PurchaseHistoryCard;
