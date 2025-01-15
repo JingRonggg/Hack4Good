@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from '../utils/axios'; // Import your custom axios instance
+import axios from '../utils/axios';
 import { useNavigate } from "react-router";
 import { AiOutlineLeft } from "react-icons/ai";
 import PurchasesCard from "../components/Admin/PurchasesCard";
@@ -16,7 +16,6 @@ interface Transaction {
 const AdminApprovePurchasesPage: React.FC = () => {
     const navigate = useNavigate();
     const [transactions, setTransactions] = useState<Transaction[]>([]);
-    const [error, setError] = useState<string | null>(null);
 
     // Fetch transactions with status 'pending' on component mount
     useEffect(() => {
@@ -26,7 +25,6 @@ const AdminApprovePurchasesPage: React.FC = () => {
                 setTransactions(data);
             } catch (error) {
                 console.error("Error fetching pending transactions:", error);
-                setError("Failed to fetch pending transactions.");
             }
         };
 
@@ -41,7 +39,6 @@ const AdminApprovePurchasesPage: React.FC = () => {
             setTransactions((prev) => prev.filter((transaction) => transaction._id !== id));
         } catch (error) {
             console.error("Error approving transaction:", error);
-            setError("Failed to approve transaction. Please try again.");
         }
     };
 
@@ -53,16 +50,11 @@ const AdminApprovePurchasesPage: React.FC = () => {
             setTransactions((prev) => prev.filter((transaction) => transaction._id !== id));
         } catch (error) {
             console.error("Error canceling transaction:", error);
-            setError("Failed to cancel transaction. Please try again.");
         }
     };
 
     const handleClick = () => {
         navigate("/admin/store");
-    };
-
-    const closeErrorModal = () => {
-        setError(null);
     };
 
     return (
@@ -83,50 +75,8 @@ const AdminApprovePurchasesPage: React.FC = () => {
             ) : (
                 <p>No pending purchases.</p>
             )}
-
-            {/* Error Modal */}
-            {error && (
-                <div style={modalStyles.overlay}>
-                    <div style={modalStyles.modal}>
-                        <p>{error}</p>
-                        <button onClick={closeErrorModal} style={modalStyles.button}>
-                            Close
-                        </button>
-                    </div>
-                </div>
-            )}
         </div>
     );
-};
-
-const modalStyles = {
-    overlay: {
-        position: "fixed" as "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    modal: {
-        backgroundColor: "#fff",
-        padding: "20px",
-        borderRadius: "8px",
-        textAlign: "center" as "center",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    },
-    button: {
-        marginTop: "10px",
-        padding: "10px 20px",
-        backgroundColor: "#007BFF",
-        color: "#fff",
-        border: "none",
-        borderRadius: "4px",
-        cursor: "pointer",
-    },
 };
 
 export default AdminApprovePurchasesPage;
