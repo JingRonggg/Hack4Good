@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineLeft } from "react-icons/ai";
 import { useNavigate } from "react-router";
 import { Button, TextField } from "@mui/material";
-import UploadPhoto from "../../../components/Admin/UploadPhoto";
+import UploadPhoto from "../components/Admin/UploadPhoto";
 
 const AdminEditItemPage: React.FC = () => {
   const navigate = useNavigate();

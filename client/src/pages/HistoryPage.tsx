@@ -1,5 +1,5 @@
 import React from "react";
-import HistoryCard from "../../components/TransactionHistory/HistoryCard";
+import HistoryCard from "../components/TransactionHistory/HistoryCard";
 
 const HistoryPage: React.FC = () => {
   return (

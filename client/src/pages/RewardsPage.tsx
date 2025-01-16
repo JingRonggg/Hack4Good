@@ -1,6 +1,6 @@
 import React from "react";
-import TaskCard from "../../components/Task/TaskCard";
-import Bubble from "../../components/Task/Bubble";
+import TaskCard from "../components/Task/TaskCard";
+import Bubble from "../components/Task/Bubble";
 
 const RewardsPage: React.FC = () => {
   return (

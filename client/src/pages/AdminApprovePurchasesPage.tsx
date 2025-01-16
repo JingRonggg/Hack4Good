@@ -1,13 +1,13 @@
 import React from "react";
-import VerifyTaskCard from "components/Admin/VerifyTaskCard";
 import { useNavigate } from "react-router";
 import { AiOutlineLeft } from "react-icons/ai";
+import PurchasesCard from "../components/Admin/PurchasesCard";
 
-const AdminVerifyTaskPage: React.FC = () => {
+const AdminApprovePurchasesPage: React.FC = () => {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/admin/manage-tasks");
+    navigate("/admin/store");
   }
 
   return (
@@ -19,11 +19,11 @@ const AdminVerifyTaskPage: React.FC = () => {
           style={{ marginRight: "10px", cursor: "pointer" }}
           onClick={handleClick}
         />
-        <h1 style={{ margin: "0 auto" }}>Verify Tasks</h1>
+        <h1 style={{ margin: "0 auto" }}>Approve Purchases</h1>
       </div>
-      <VerifyTaskCard />
+      <PurchasesCard />
     </div>
   );
 };
 
-export default AdminVerifyTaskPage;
+export default AdminApprovePurchasesPage;

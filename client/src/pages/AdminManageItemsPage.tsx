@@ -1,20 +1,22 @@
 import React from "react";
-import Task from "components/Admin/ManageTaskCard";
-import RoundButton from "components/Admin/RoundButton";
-import { AiOutlineLeft } from "react-icons/ai";
+import RoundButton from "../components/Admin/RoundButton";
 import { useNavigate } from "react-router";
+import { AiOutlineLeft } from "react-icons/ai";
+import ItemCard from "../components/Admin/ItemCard";
 
-const AdminManageTasksPage: React.FC = () => {
+const AdminManageItemsPage: React.FC = () => {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/admin/add-tasks");
+    navigate("/admin/store");
+  }
+
+  function addItem() {
+    navigate("/admin/add-item");
   }
 
   return (
-    <div
-      style={{ width: "90%", justifyContent: "center", alignItems: "center" }}
-    >
+    <div style={{ width: "90%" }}>
       <div
         style={{ display: "flex", alignItems: "center", marginBottom: "15px" }}
       >
@@ -22,14 +24,14 @@ const AdminManageTasksPage: React.FC = () => {
           style={{ marginRight: "10px", cursor: "pointer" }}
           onClick={handleClick}
         />
-        <h1 style={{ margin: "0 auto" }}>Manage Tasks</h1>
+        <h1 style={{ margin: "0 auto" }}>Manage Items</h1>
       </div>
-      <Task />
+      <ItemCard />
       <div style={{ position: "absolute", bottom: "80px", right: "30px" }}>
-        <RoundButton onClick={handleClick} />
+        <RoundButton onClick={addItem} />
       </div>
     </div>
   );
 };
 
-export default AdminManageTasksPage;
+export default AdminManageItemsPage;
