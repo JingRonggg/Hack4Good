@@ -17,24 +17,11 @@ const instance = new Schema<I>(
             type: Number,
             required: true
         },
-        users: {
-            type: [String],
-            required: true,
-            default: []
-        },
         status: {
             type: String,
             required: true,
-            enum: ['completed', 'pendingCompletion', 'pendingVerification'],
-            default: 'pendingCompletion'
-        },
-        markedCompleted: {
-            type: Date,
-            default: null
-        },
-        verified: {
-            type: Date,
-            default: null
+            enum: ['completed', 'pending'],
+            default: 'pending'
         }
     },
     {

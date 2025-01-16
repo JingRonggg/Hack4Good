@@ -2,7 +2,6 @@ export interface Account {
   username: string
   password: string
   role: 'user' | 'admin'
-  points: number
 }
 
 export interface FormData {

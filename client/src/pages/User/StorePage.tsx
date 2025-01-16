@@ -3,7 +3,7 @@ import React from "react";
 
 const StorePage: React.FC = () => {
   return (
-    <div style={{ padding: "20px", paddingBottom: "70px"  }}>
+    <div style={{ padding: "20px" }}>
       <h1>Minimart</h1>
       <div style={{}}>
         <h3>Purchase History</h3>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaStore, FaTrophy, FaUsers } from "react-icons/fa";
+import { FaHome, FaStore, FaTrophy, FaHistory, FaUsers } from "react-icons/fa";
 import "../styles/Navbar.css"; // Import your CSS styles
 import { useNavigate } from "react-router"; // If you're using React Router
 
@@ -9,13 +9,15 @@ interface NavItemProps {
   path: string;
 }
 
-const AdminNavbar: React.FC = () => {
+const Navbar: React.FC = () => {
   const navigate = useNavigate();
 
   const navItems: NavItemProps[] = [
-    { icon: <FaStore />, label: "Store", path: "/admin/store" },
-    { icon: <FaTrophy />, label: "Rewards", path: "/admin/tasks" },
-    { icon: <FaUsers />, label: "Profile", path: "/admin/manage-users" },
+    { icon: <FaHome />, label: "Home", path: "/" },
+    { icon: <FaStore />, label: "Store", path: "/store" },
+    { icon: <FaTrophy />, label: "Rewards", path: "/rewards" },
+    { icon: <FaHistory />, label: "History", path: "/history" },
+    { icon: <FaUsers />, label: "Profile", path: "/profile" },
   ];
 
   return (
@@ -34,4 +36,4 @@ const AdminNavbar: React.FC = () => {
   );
 };
 
-export default AdminNavbar;
+export default Navbar;

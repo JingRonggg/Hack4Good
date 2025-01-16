@@ -2,17 +2,14 @@ import React from "react";
 import HomePageDashboardCard from "components/Home/Card";
 import PurchaseHistoryCard from "components/Home/PurchaseHistoryCard";
 import PendingTaskCard from "components/Home/PendingTasksCard";
-import { useAuth } from "contexts/AuthContext";
 
 const HomePage: React.FC = () => {
-  const { account } = useAuth();
-
   return (
-    <div style={{ padding: "20px", width: "90%", paddingBottom: "70px" }}>
+    <div style={{ padding: "20px", width: "90%" }}>
       <h1>
-        Hello <i>{account?.username}</i>
+        Hello <i>name</i>
       </h1>
-      {/* status view of dashboard */}
+      {/* status view of dashboard  */}
       <div>
         <HomePageDashboardCard />
       </div>

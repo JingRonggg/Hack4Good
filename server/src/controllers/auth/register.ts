@@ -34,7 +34,7 @@ const register: RequestHandler = async (req, res, next) => {
     const hash = await crypt.hash(password)
 
     // Create account
-    const account = new Account({ username, password: hash, points: 0 })
+    const account = new Account({ username, password: hash })
     await account.save()
 
     // Generate access token
