@@ -2,10 +2,20 @@ import React from "react";
 import { Typography } from "@mui/material";
 import { FaStore, FaTrophy } from "react-icons/fa";
 
-const HistoryCard = () => {
-  const isTask = 1;
+interface Transaction {
+  _id: string;
+  item: string;
+  status: "approved" | "pending" | "declined";
+  username: string;
+  points: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
 
-  if (!isTask) {
+const HistoryCard = ({ transaction }: { transaction: Transaction }) => {
+  const isTask = transaction.points >= 1;
+
+  if (isTask) {
     return (
       <div style={styles.card}>
         <div style={styles.header}>
@@ -14,11 +24,9 @@ const HistoryCard = () => {
           <div style={styles.separator}>
             <div style={styles.content}>
               <Typography style={styles.title}>Task Completed</Typography>
-              <Typography style={styles.subtitle}>
-                Complete Math Homework
-              </Typography>
+              <Typography style={styles.subtitle}>{transaction.item}</Typography>
             </div>
-            <Typography style={styles.gainpoints}>+500</Typography>
+            <Typography style={styles.gainpoints}>+{transaction.points}</Typography>
           </div>
         </div>
       </div>
@@ -33,11 +41,11 @@ const HistoryCard = () => {
         <div style={styles.separator}>
           <div style={styles.content}>
             <Typography style={styles.title}>Purchase</Typography>
-            <Typography style={styles.subtitle}>Nissin Cup Noodles</Typography>
+            <Typography style={styles.subtitle}>{transaction.item}</Typography>
           </div>
         </div>
       </div>
-      <Typography style={styles.losepoints}>-50</Typography>
+      <Typography style={styles.losepoints}>{transaction.points}</Typography>
     </div>
   );
 };

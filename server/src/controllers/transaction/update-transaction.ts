@@ -4,10 +4,10 @@ import { Request, Response } from 'express';
 export const updateTransaction = async (req: Request ,res: Response) => {
     try{
         const { id } = req.params;
-        const { item, status, user} = req.body;
+        const { item, status, user,points} = req.body;
         const transaction = await Transaction.findByIdAndUpdate(
             id,
-            { item, status, user },
+            { item, status, user,points},
             { new: true, runValidators: true }
         )
 

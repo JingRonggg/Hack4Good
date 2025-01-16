@@ -3,8 +3,8 @@ import { Request, Response } from 'express';
 
 export const createTransaction = async (req: Request, res: Response) => {
     try {
-        const { item, status, username } = req.body;
-        const transaction = new Transaction({ item, status, username });
+        const { item, status, username, points} = req.body;
+        const transaction = new Transaction({ item, status, username, points});
         const savedTransaction = await transaction.save();
         res.status(201).json(savedTransaction);
     } catch(error) {
