@@ -56,6 +56,7 @@ const AdminManageTasksPage: React.FC = () => {
       {items.map((item) => (
                 <TaskCard
                     key={item._id}
+                    id={item._id}
                     task={item.task}
                     description={item.description}
                     points={item.points}

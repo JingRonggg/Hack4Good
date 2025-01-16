@@ -3,6 +3,7 @@ import Pencil from "../../assets/Pencil.png";
 import { useNavigate } from "react-router";
 
 interface TaskProps {
+  id: string,
   task: string; 
   description: string; 
   points: number; 
@@ -13,11 +14,11 @@ interface TaskProps {
   date: Date;
 }
 
-const TaskCard: React.FC<TaskProps> = ({ task, points, date }) => {
+const TaskCard: React.FC<TaskProps> = ({ task, points, date, id }) => {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/admin/edit-tasks");
+    navigate(`/admin/edit-tasks/${id}`);
   }
 
   return (
