@@ -13,7 +13,12 @@ const AdminManageTasksPage: React.FC = () => {
 
   return (
     <div
-      style={{ width: "90%", justifyContent: "center", alignItems: "center" }}
+      style={{
+        width: "90%",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingBottom: "70px",
+      }}
     >
       <div
         style={{ display: "flex", alignItems: "center", marginBottom: "15px" }}

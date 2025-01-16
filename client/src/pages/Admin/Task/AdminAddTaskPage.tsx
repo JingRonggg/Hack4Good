@@ -11,7 +11,7 @@ const AdminAddTasksPage: React.FC = () => {
   }
 
   return (
-    <div style={{ width: "90%", margin: "0 auto" }}>
+    <div style={{ width: "90%", margin: "0 auto", paddingBottom: "70px" }}>
       <div
         style={{ display: "flex", alignItems: "center", marginBottom: "15px" }}
       >
