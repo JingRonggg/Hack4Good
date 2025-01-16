@@ -3,8 +3,13 @@ import icon from "../../assets/Avatar.jpg";
 import { AiOutlineRight } from "react-icons/ai";
 import { useNavigate } from "react-router";
 import { Typography } from "@mui/material";
+import { Account } from "../../@types";
 
-const TaskCard = () => {
+interface UserProfileCardProps {
+  account: Account;
+}
+
+const UserProfileCard: React.FC<UserProfileCardProps> = ({ account }) => {
   const navigate = useNavigate();
 
   function handleClick() {
@@ -17,9 +22,9 @@ const TaskCard = () => {
         <div style={styles.leftcontent}>
           <img src={icon} style={styles.icon} />
           <div style={styles.content}>
-            <Typography style={styles.title}>Jasper</Typography>
+            <Typography style={styles.title}>{account.username}</Typography>
             <Typography style={styles.subtitle}>
-              Resident | +65 9123 4567
+              {account.role} | Points: {account.points}
             </Typography>
           </div>
         </div>
@@ -40,6 +45,7 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "column",
     backgroundColor: "#fff",
+    marginBottom: "10px",
   },
   content: {
     display: "flex",
@@ -76,4 +82,4 @@ const styles = {
   },
 };
 
-export default TaskCard;
+export default UserProfileCard;
