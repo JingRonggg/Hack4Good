@@ -1,18 +1,41 @@
 import React from "react";
 
-const TaskCard = () => {
+interface TaskProps {
+  _id: string;
+  task: string; 
+  points: number; 
+  users: string[]; 
+  markedCompleted: string | Date | null; 
+  date: Date;
+}
+
+interface TaskCardProps {
+  task: TaskProps;
+  handleApprove: (id: string) => void;
+  handleCancel: (id: string) => void;
+}
+
+const TaskCard: React.FC<TaskCardProps> = ({ task, handleApprove, handleCancel }) => {
+  const formatDate = (date: string | Date | null) => {
+    if (!date) return "-";
+    const parsedDate = typeof date === "string" ? new Date(date) : date;
+    return parsedDate.toLocaleDateString();
+  };
+
   return (
     <div style={styles.card}>
       <div style={styles.header}>
-        <p style={styles.description}>Participant: Jasper</p>
+        <h2 style={styles.title}>{task.task}</h2>
+        <p style={styles.description}>{task.points} Points</p>
       </div>
-      <h2 style={styles.title}>Go for a 2.4km Run</h2>
-      <p style={styles.description}>Complete by 30 Jan 2025</p>
+      <p style={styles.description}>Created: {formatDate(task.date)}</p>
+      <p style={styles.description}>Marked Completed: {formatDate(task.markedCompleted)}</p>
+      <p style={styles.description}>Participant(s): {task.users.join(", ")}</p>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div style={styles.invalid}>
+        <div style={styles.invalid} onClick={() => handleCancel(task._id)}>
           <span>Completion Invalid</span>
         </div>
-        <div style={styles.valid}>
+        <div style={styles.valid} onClick={() => handleApprove(task._id)}>
           <span>Task Verified</span>
         </div>
       </div>

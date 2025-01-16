@@ -24,7 +24,7 @@ const TaskCard: React.FC<TaskProps> = ({ task, points, verifiedStatus, date, use
     <div style={styles.card}>
       <div style={styles.content}>
         <div style={styles.header}>
-          <Typography style={styles.subtitle}>Participant: {users.join(", ")}</Typography>
+          <Typography style={styles.subtitle}>Participant(s): {users.join(", ")}</Typography>
           <span style={styles.points}>{points} Points</span>
         </div>
         <Typography style={styles.title}>{task}</Typography>
