@@ -1,29 +1,32 @@
 import React from "react";
 
 type StatusProps = {
-  status: "Pending Completion" | "Verified" | "Pending Verification";
-};
+  status: string;
+}
 
 const Status: React.FC<StatusProps> = ({ status }) => {
   const statusConfig: Record<
     StatusProps["status"],
-    { color: string; textColor: string }
+    { color: string; textColor: string; label: string }
   > = {
-    "Pending Completion": {
+    "pendingCompletion": {
       color: "#E0E0E0",
       textColor: "#000000",
+      label: "Pending Completion",
     },
-    "Verified": {
+    "completed": {
       color: "#C8F7C5",
       textColor: "#2B7A0B",
+      label: "Verified",
     },
-    "Pending Verification": {
+    "pendingVerification": {
       color: "#FFEFC6",
       textColor: "#DA9200",
+      label: "Pending Verified"
     },
   };
 
-  const { color, textColor } = statusConfig[status];
+  const { color, textColor, label } = statusConfig[status] || {};
 
   return (
     <span
@@ -36,7 +39,7 @@ const Status: React.FC<StatusProps> = ({ status }) => {
         fontSize: "14px",
       }}
     >
-      {status}
+      {label}
     </span>
   );
 };
