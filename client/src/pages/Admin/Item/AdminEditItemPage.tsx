@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineLeft } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router";
 import { Button, TextField } from "@mui/material";
-import axios from "axios";
+import axios from "utils/axios";
 import UploadPhoto from "components/Admin/UploadPhoto";
 
 const AdminEditItemPage: React.FC = () => {
