@@ -12,10 +12,14 @@ const AdminManageTasksPage: React.FC = () => {
         navigate("/admin/add-tasks");
     }
 
+    function handleBack() {
+        navigate("/admin/tasks");
+    }
+    
     return(
         <div style={{ width: "70vw", paddingBottom: "100px" }}>
             <div style={{ display: "flex", alignItems: "center",  marginBottom: "15px" }}>
-                <AiOutlineLeft style={{ marginRight:"10px", cursor: "pointer" }} onClick={handleClick} />
+                <AiOutlineLeft style={{ marginRight:"10px", cursor: "pointer" }} onClick={handleBack} />
                 <h1 style={{ margin: "0 auto" }}>Manage Tasks</h1>
             </div>
             <Task />
