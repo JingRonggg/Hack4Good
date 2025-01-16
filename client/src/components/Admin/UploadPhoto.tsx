@@ -2,6 +2,8 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 
 const UploadPhoto: React.FC = () => {
+  // const [file, setFile] = useState();
+
   return (
     <Box
       sx={{
@@ -29,6 +31,7 @@ const UploadPhoto: React.FC = () => {
         id="file-input"
         type="file"
         style={{ display: "none" }}
+        // onClick={(e) => setFile(e.target.files[0])}
         accept="image/*"
       />
     </Box>
