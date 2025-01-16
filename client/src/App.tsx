@@ -58,7 +58,7 @@ const routes = [
   { path: "/history", component: HistoryPage, protected: true, admin: false },
   { path: "/profile", component: ProfilePage, protected: true, admin: false },
   {
-    path: "/detailed-task",
+    path: "/detailed-task/:id",
     component: DetailedTaskPage,
     protected: true,
     admin: false,
