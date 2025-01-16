@@ -18,6 +18,11 @@ const instance = new Schema<I>(
         username: {
             type: String,
             required: true
+        },
+        points: {
+            type: Number,
+            required: true,
+            default: 0
         }
     },
     {
