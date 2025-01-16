@@ -14,7 +14,7 @@ interface InventoryProps {
 }
 
 interface UserProps{
-  name: string;
+  username: string;
   points: string;
 }
 
@@ -27,7 +27,7 @@ const DetailedListing: React.FC<DetailedListingProps> = ({ inventory, user}) => 
   const transactionData = {
     item: inventory.name,
     status: "pending",
-    username: user.name,
+    username: user.username
   };
   
   const createTransaction = async () => {
