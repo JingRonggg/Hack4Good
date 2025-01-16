@@ -26,9 +26,9 @@ const HistoryCard = ({ transaction }: { transaction: Transaction }) => {
               <Typography style={styles.title}>Task Completed</Typography>
               <Typography style={styles.subtitle}>{transaction.item}</Typography>
             </div>
-            <Typography style={styles.gainpoints}>+{transaction.points}</Typography>
           </div>
         </div>
+        <Typography style={styles.gainpoints}>+{transaction.points}</Typography>
       </div>
     );
   }
@@ -36,8 +36,8 @@ const HistoryCard = ({ transaction }: { transaction: Transaction }) => {
   return (
     <div style={styles.card}>
       <div style={styles.header}>
-        {/* <img src={Purchase} style={styles.icon} /> */}
         <FaStore style={styles.icon} />
+        {/* <img src={Purchase} style={styles.icon} /> */}
         <div style={styles.separator}>
           <div style={styles.content}>
             <Typography style={styles.title}>Purchase</Typography>
