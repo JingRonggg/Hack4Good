@@ -1,6 +1,6 @@
 import React from "react";
-import Task from "../components/Admin/ManageTaskCard";
-import RoundButton from "../components/Admin/RoundButton";
+import Task from "../../../components/Admin/ManageTaskCard";
+import RoundButton from "../../../components/Admin/RoundButton";
 import { AiOutlineLeft } from "react-icons/ai"; 
 import { useNavigate } from "react-router";
 

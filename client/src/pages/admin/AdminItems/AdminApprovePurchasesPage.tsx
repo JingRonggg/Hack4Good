@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from '../utils/axios';
+import axios from '../../../utils/axios';
 import { useNavigate } from "react-router";
 import { AiOutlineLeft } from "react-icons/ai";
-import PurchasesCard from "../components/Admin/PurchasesCard";
+import PurchasesCard from "../../../components/Admin/PurchasesCard";
 
 interface Transaction {
     _id: string;
