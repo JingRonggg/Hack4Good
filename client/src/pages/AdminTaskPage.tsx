@@ -1,6 +1,6 @@
 import React from "react";
-import ActionCard from "../../../components/Admin/ActionCard";
-import TaskCard from "../../../components/Admin/TaskCard";
+import ActionCard from "../components/Admin/ActionCard";
+import TaskCard from "../components/Admin/TaskCard";
 import { FaEdit, FaCheckSquare } from "react-icons/fa";
 
 const AdminTaskPage: React.FC = () => {

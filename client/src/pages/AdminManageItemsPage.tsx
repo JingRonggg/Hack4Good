@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import RoundButton from "../../../components/Admin/RoundButton";
+import RoundButton from "../components/Admin/RoundButton";
 import { useNavigate } from "react-router";
 import { AiOutlineLeft } from "react-icons/ai";
-import ItemCard from "../../../components/Admin/ItemCard";
-import axios from "../../../utils/axios";
+import ItemCard from "../components/Admin/ItemCard";
+import axios from "../utils/axios";
 
 interface InventoryItem {
     _id: string;

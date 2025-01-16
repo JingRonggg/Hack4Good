@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../../utils/axios";
+import axios from "../utils/axios";
 import { AiOutlineLeft } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router";
 import { Button, TextField } from "@mui/material";
-import UploadPhoto from "../../../components/Admin/UploadPhoto";
+import UploadPhoto from "../components/Admin/UploadPhoto";
 
 const AdminEditItemPage: React.FC = () => {
     const navigate = useNavigate();

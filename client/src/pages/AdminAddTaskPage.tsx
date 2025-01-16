@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineLeft } from "react-icons/ai";
 import { useNavigate } from "react-router";
 import { Button, TextField } from "@mui/material";
-import axios from '../../../utils/axios';
+import axios from '../utils/axios';
 
 const AdminAddTasksPage: React.FC = () => {
     const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import React from "react";
-import UserProfileCard from "../../../components/Admin/UserProfileCard"
-import RoundButton from "../../../components/Admin/RoundButton";
+import UserProfileCard from "../components/Admin/UserProfileCard"
+import RoundButton from "../components/Admin/RoundButton";
 import { useNavigate } from "react-router";
 
 const AdminManageUsersPage: React.FC = () => {

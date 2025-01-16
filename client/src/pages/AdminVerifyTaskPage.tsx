@@ -1,5 +1,5 @@
 import React from "react";
-import VerifyTaskCard from "../../../components/Admin/VerifyTaskCard"
+import VerifyTaskCard from "../components/Admin/VerifyTaskCard"
 import { useNavigate } from "react-router";
 import { AiOutlineLeft } from "react-icons/ai";
 
