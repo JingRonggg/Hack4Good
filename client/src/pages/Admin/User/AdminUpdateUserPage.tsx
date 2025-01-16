@@ -1,17 +1,33 @@
 import React from "react";
 import { AiOutlineLeft } from "react-icons/ai";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { Button, TextField, Avatar } from "@mui/material";
+import axios from "../../../utils/axios";
+import { Account } from "../../../@types";
 
-const AdminUpdateTasksPage: React.FC = () => {
+const AdminUpdateUserPage: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const account = location.state?.account as Account;
 
   function handleClick() {
     navigate("/admin/manage-users");
   }
 
   function changePassword() {
-    navigate("/admin/change-password");
+    navigate("/admin/change-password" , { state: { account } });
+  }
+
+  async function handleDelete() {
+    const confirmed = window.confirm("Are you sure you want to delete this user?");
+    if (!confirmed) return;
+
+    try {
+      await axios.delete(`/account/${account.username}`);
+      navigate("/admin/manage-users");
+    } catch (error) {
+      console.error("Error deleting account:", error);
+    }
   }
 
   return (
@@ -42,16 +58,6 @@ const AdminUpdateTasksPage: React.FC = () => {
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
           }}
         ></Avatar>
-        <Button
-          variant="text"
-          style={{
-            color: "#5E5E5E",
-            fontWeight: "bold",
-            textTransform: "none",
-          }}
-        >
-          Change Photo
-        </Button>
       </div>
       <div
         style={{
@@ -67,15 +73,7 @@ const AdminUpdateTasksPage: React.FC = () => {
           label="Name"
           multiline
           rows={1}
-          defaultValue="Jasper"
-          style={{ width: "100%" }}
-        />
-        <TextField
-          id="mobile-number"
-          label="Mobile Number"
-          multiline
-          rows={1}
-          defaultValue="9123 4567"
+          defaultValue={account.username}
           style={{ width: "100%" }}
         />
       </div>
@@ -100,21 +98,9 @@ const AdminUpdateTasksPage: React.FC = () => {
             textTransform: "none",
             width: "100%",
           }}
+          onClick={handleDelete}
         >
           Delete User
-        </Button>
-        <Button
-          variant="outlined"
-          style={{
-            color: "#000",
-            borderColor: "#000",
-            fontWeight: "bold",
-            textTransform: "none",
-            width: "100%",
-          }}
-          onClick={changePassword}
-        >
-          Reset Password
         </Button>
         <Button
           variant="contained"
@@ -125,12 +111,14 @@ const AdminUpdateTasksPage: React.FC = () => {
             textTransform: "none",
             width: "100%",
           }}
+          onClick={changePassword}
         >
-          Update User
+          Reset Password
         </Button>
+
       </div>
     </div>
   );
 };
 
-export default AdminUpdateTasksPage;
+export default AdminUpdateUserPage;

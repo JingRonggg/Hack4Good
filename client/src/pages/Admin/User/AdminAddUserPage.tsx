@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineLeft } from "react-icons/ai";
 import { useNavigate } from "react-router";
 import {
@@ -11,10 +11,13 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { Avatar } from "@mui/material";
+import axios from "../../../utils/axios";
 
 const AdminAddUserPage: React.FC = () => {
   const navigate = useNavigate();
-  const [role, setRole] = React.useState("");
+  const [role, setRole] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   function handleClick() {
     navigate("/admin/manage-users");
@@ -22,6 +25,20 @@ const AdminAddUserPage: React.FC = () => {
 
   const handleChange = (event: SelectChangeEvent) => {
     setRole(event.target.value);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('/auth/register', {
+        username,
+        password,
+        role,
+      });
+      console.log('User registered successfully:', response.data);
+      navigate("/admin/manage-users");
+    } catch (error) {
+      console.error('Error registering user:', error);
+    }
   };
 
   return (
@@ -52,16 +69,6 @@ const AdminAddUserPage: React.FC = () => {
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
           }}
         ></Avatar>
-        <Button
-          variant="text"
-          style={{
-            color: "#5E5E5E",
-            fontWeight: "bold",
-            textTransform: "none",
-          }}
-        >
-          Change Photo
-        </Button>
       </div>
       <div
         style={{
@@ -77,15 +84,8 @@ const AdminAddUserPage: React.FC = () => {
           label="Name"
           multiline
           rows={1}
-          defaultValue="Jasper"
-          style={{ width: "100%" }}
-        />
-        <TextField
-          id="mobile-number"
-          label="Mobile Number"
-          multiline
-          rows={1}
-          defaultValue="9123 4567"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           style={{ width: "100%" }}
         />
         <TextField
@@ -93,15 +93,8 @@ const AdminAddUserPage: React.FC = () => {
           label="New Password"
           multiline
           rows={1}
-          defaultValue="password123"
-          style={{ width: "100%" }}
-        />
-        <TextField
-          id="confirmation"
-          label="Re-enter New Password"
-          multiline
-          rows={1}
-          defaultValue="password123"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           style={{ width: "100%" }}
         />
         <FormControl sx={{ width: "100%" }}>
@@ -113,15 +106,15 @@ const AdminAddUserPage: React.FC = () => {
             value={role}
             onChange={handleChange}
           >
-            <MenuItem value={10}>User</MenuItem>
-            <MenuItem value={20}>Admin</MenuItem>
+            <MenuItem value="user">User</MenuItem>
+            <MenuItem value="admin">Admin</MenuItem>
           </Select>
         </FormControl>
       </div>
       <div
         style={{
           margin: "20px 0px",
-          width: "10so 0%",
+          width: "100%",
           paddingBottom: "50px",
         }}
       >
@@ -133,6 +126,7 @@ const AdminAddUserPage: React.FC = () => {
             fontWeight: "bold",
             width: "100%",
           }}
+          onClick={handleSubmit}
         >
           Add User
         </Button>
