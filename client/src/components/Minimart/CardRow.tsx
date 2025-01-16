@@ -26,9 +26,7 @@ const CardRow: React.FC = () => {
 
   return (
     <div style={containerStyle}>
-      {items
-        .filter((item) => item.quantity > 0) // Show only available items
-        .map((item) => (
+      {items.map((item) => (
           <MultiActionAreaCard key={item._id} item={item} />
         ))}
     </div>

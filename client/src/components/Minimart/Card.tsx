@@ -23,7 +23,7 @@ const MultiActionAreaCard: React.FC<MultiActionAreaCardProps> = ({ item }) => {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/detailed-listing", { state: { item } }); // Pass item to details page
+    navigate(`/detailed-listing/${item._id}`); // Pass item to details page
   }
 
   return (
