@@ -14,7 +14,7 @@ interface InventoryItem {
 
 interface UserItem {
   points: string; 
-  name: string;
+  username: string;
 }
 
 const DetailedListingPage: React.FC = () => {
