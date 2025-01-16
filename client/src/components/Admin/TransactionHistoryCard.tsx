@@ -3,21 +3,26 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
-const TransactionHistoryCard = () => {
+interface TransactionProps {
+  id: string;
+  item: string;
+  user: string;
+  date: string;
+}
+
+const TransactionHistoryCard: React.FC<TransactionProps> = ({ id, item, user, date }) => {
+  const formatDate = (date: string | Date | null) => {
+    if (!date) return "-";
+    const parsedDate = typeof date === "string" ? new Date(date) : date;
+    return parsedDate.toLocaleDateString();
+  };
+  
   const actionItems = [
     {
-      id: "3412313",
-      dateline: "30 January 2025, 10.30am",
-      label: "Nissin Cup Noodles",
-      point: 0,
-      user: "Jasper",
-    },
-    {
-      id: "3421353",
-      dateline: "10 February 2025, 11.00am",
-      label: "Nissin Cup Noodles",
-      point: 0,
-      user: "Tom",
+      id: id,
+      dateline: formatDate(date),
+      label: item,
+      user: user,
     },
   ];
 
@@ -50,9 +55,6 @@ const TransactionHistoryCard = () => {
             <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                 <Typography variant="h6" fontWeight="bold">
                 {action.label}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                        {action.point} POINTS
                 </Typography>
             </div>
             <Typography variant="body2" color="text.secondary">

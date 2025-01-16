@@ -2,23 +2,34 @@ import React from "react";
 import Pencil from "../../assets/Pencil.png";
 import { useNavigate } from "react-router";
 
-const TaskCard = () => {
+interface TaskProps {
+  id: string,
+  task: string; 
+  description: string; 
+  points: number; 
+  users: string[]; 
+  status: string; 
+  markedCompleted: Date; 
+  verified: Date;
+  date: Date;
+}
+
+const TaskCard: React.FC<TaskProps> = ({ task, points, date, id }) => {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/admin/edit-tasks");
+    navigate(`/admin/edit-tasks/${id}`);
   }
 
   return (
     <div style={styles.card}>
       <div style={styles.header}>
-        <p style={styles.description}>Created on 10 Jan 2025</p>
+        <p style={styles.description}>Created on {date.toLocaleDateString()}</p>
         <img style={styles.icon} src={Pencil} onClick={handleClick}></img>
       </div>
-      <h2 style={styles.title}>Go for a 2.4km Run</h2>
-      <p style={styles.description}>Complete by 30 Jan 2025</p>
+      <h2 style={styles.title}>{task}</h2>
       <div style={styles.reward}>
-        <span>+500 points</span>
+        <span>+{points} points</span>
       </div>
     </div>
   );

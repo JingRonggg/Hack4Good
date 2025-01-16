@@ -82,7 +82,7 @@ const routes = [
     admin: true,
   },
   {
-    path: "/admin/edit-tasks",
+    path: "/admin/edit-tasks/:id",
     component: AdminEditTasksPage,
     protected: true,
     admin: true,

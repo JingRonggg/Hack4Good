@@ -2,26 +2,45 @@ import React from "react";
 import Status from "../Admin/Status";
 import { Typography } from "@mui/material";
 
-const TaskCard = () => {
+interface TaskProps {
+  task: string; 
+  description: string; 
+  points: number; 
+  users: string[]; 
+  verifiedStatus: string; 
+  markedCompleted: string | Date | null; 
+  verified: string | Date | null;
+  date: Date;
+}
+
+const TaskCard: React.FC<TaskProps> = ({ task, points, verifiedStatus, date, users, markedCompleted, verified }) => {
+  const formatDate = (date: string | Date | null) => {
+    if (!date) return "-";
+    const parsedDate = typeof date === "string" ? new Date(date) : date;
+    return parsedDate.toLocaleDateString();
+  };
+
   return (
     <div style={styles.card}>
       <div style={styles.content}>
         <div style={styles.header}>
-          <Typography style={styles.subtitle}>Participant: Jasper</Typography>
-          <span style={styles.points}>500 Points</span>
+          <Typography style={styles.subtitle}>Participant(s): {users.join(", ")}</Typography>
+          <span style={styles.points}>{points} Points</span>
         </div>
-        <Typography style={styles.title}>Go for a 2.4km Run</Typography>
+        <Typography style={styles.title}>{task}</Typography>
         <div style={styles.description}>
           <Typography style={styles.subtitle}>
-            Joined:10 Jan 2025, 10.59am
+          Created: {date.toLocaleDateString()}
           </Typography>
           <Typography style={styles.subtitle}>
-            Marked Completed:11 Jan 2025, 10.59am
+          Marked Completed: {formatDate(markedCompleted)}
           </Typography>
-          <Typography style={styles.subtitle}>Verified:-</Typography>
+          <Typography style={styles.subtitle}>
+          Verified: {formatDate(verified)}
+          </Typography>
         </div>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Status status="Pending Completion"></Status>
+          <Status status={verifiedStatus}></Status>
         </div>
       </div>
     </div>
