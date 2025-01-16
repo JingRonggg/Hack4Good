@@ -8,11 +8,22 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
 import { useNavigate } from "react-router";
 
-const MultiActionAreaCard = () => {
+interface MultiActionAreaCardProps {
+  item: {
+    _id: string;
+    name: string;
+    quantity: number;
+    price: number;
+    image: string;
+    description: string;
+  };
+}
+
+const MultiActionAreaCard: React.FC<MultiActionAreaCardProps> = ({ item }) => {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/detailed-listing");
+    navigate("/detailed-listing", { state: { item } }); // Pass item to details page
   }
 
   return (
@@ -21,22 +32,21 @@ const MultiActionAreaCard = () => {
         <CardMedia
           component="img"
           sx={{ width: 200, height: 200, margin: "auto" }}
-          image="https://m.media-amazon.com/images/I/71eWUsNaolL.jpg"
-          alt="green iguana"
+          image={item.image}
+          alt={item.name}
         />
         <CardContent sx={{ textAlign: "left", paddingBottom: "0px" }}>
-          <Typography gutterBottom variant="h5" component="div">
-            Cup Noodle
+          <Typography gutterBottom variant="h5">
+            {item.name}
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            Chicken Flavour. This instant cup noodle contains chicken broth with
-            a savoury flavour and a distinct chicken aroma.
+            {item.description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          500 Points
+          {item.price} Points
         </Button>
       </CardActions>
     </Card>

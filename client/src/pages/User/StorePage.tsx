@@ -6,7 +6,6 @@ const StorePage: React.FC = () => {
     <div style={{ padding: "20px", paddingBottom: "70px"  }}>
       <h1>Minimart</h1>
       <div style={{}}>
-        <h3>Purchase History</h3>
         <div>
           <CardRow />
         </div>
