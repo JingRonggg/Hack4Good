@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -6,65 +6,65 @@ import Button from "@mui/material/Button";
 import CardActions from "@mui/material/CardActions";
 import { FaCoins } from "react-icons/fa";
 
-const PendingTaskCard = () => {
-  const actionItems = [
-    {
-      id: "task1",
-      dateline: "30 January 2025",
-      label: "Complete Math Homework",
-      point: 100,
-    },
-    {
-      id: "task2",
-      dateline: "10 February 2025",
-      label: "Go for 2.4km Run",
-      point: 200,
-    },
-  ];
+interface Task {
+  id: string;
+  dateline: string;
+  label: string;
+  point: number;
+}
 
+interface Props {
+  tasks: Task[];
+}
+
+const PendingTaskCard: React.FC<Props> = ({ tasks }) => {
   return (
     <div>
-      {actionItems.map((action) => (
-        <Card
-          key={action.id}
-          sx={{
-            display: "flex", // Flexbox for horizontal alignment
-            alignItems: "center",
-            padding: "16px",
-            border: "1px solid #e0e0e0", // Light border for separation
-            borderRadius: "8px",
-            marginBottom: "16px",
-            boxShadow: "0px 2px 4px rgba(0,0,0,0.1)", // Subtle shadow
-          }}
-        >
-          {/* Content Section */}
-          <CardContent sx={{ flex: 1, marginLeft: "16px" }}>
-            <Typography variant="h6" fontWeight="bold">
-              {action.label}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {action.dateline}
-            </Typography>
-          </CardContent>
+      {tasks.length === 0 ? (
+        <Typography variant="body2" color="text.secondary">
+          No pending tasks.
+        </Typography>
+      ) : (
+        tasks.map((task) => (
+          <Card
+            key={task.id}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              padding: "16px",
+              border: "1px solid #e0e0e0",
+              borderRadius: "8px",
+              marginBottom: "16px",
+              boxShadow: "0px 2px 4px rgba(0,0,0,0.1)",
+            }}
+          >
+            <CardContent sx={{ flex: 1, marginLeft: "16px" }}>
+              <Typography variant="h6" fontWeight="bold">
+                {task.label}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {task.dateline}
+              </Typography>
+            </CardContent>
 
-          {/* Actions Section */}
-          <CardActions>
-            <Button
-              variant="contained"
-              size="small"
-              sx={{
-                backgroundColor: "#000000",
-                color: "#fefefe",
-                boxShadow: "none",
-                "&:hover": { backgroundColor: "#e0e0e0" },
-              }}
-            >
-              + {action.point} <span style={{ padding: "5px" }}></span>
-              <FaCoins />
-            </Button>
-          </CardActions>
-        </Card>
-      ))}
+            <CardActions>
+              <Button
+                variant="contained"
+                size="small"
+                sx={{
+                  backgroundColor: "#000000",
+                  color: "#fefefe",
+                  boxShadow: "none",
+                  "&:hover": { backgroundColor: "#e0e0e0" },
+                }}
+              >
+                + {task.point} <span style={{ padding: "5px" }}></span>
+                <FaCoins />
+              </Button>
+            </CardActions>
+          </Card>
+        ))
+      )}
     </div>
   );
 };
