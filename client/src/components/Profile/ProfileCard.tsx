@@ -1,16 +1,21 @@
 import React from "react";
 import icon from "../../assets/Avatar.jpg";
 import { Typography } from "@mui/material";
+import { useAuth } from "../../contexts/AuthContext";
 
 const TaskCard = () => {
+  const { account } = useAuth();
+
   return (
     <div style={styles.card}>
       <div style={styles.header}>
-        <img src={icon} style={styles.icon} />
+        <img src={icon} alt="User Avatar" style={styles.icon} />
         <div style={styles.content}>
-          <Typography style={styles.title}>Jasper</Typography>
+          <Typography style={styles.title}>
+            {account?.username || "Guest"}
+          </Typography>
           <Typography style={styles.subtitle}>
-            Resident | +65 9123 4567
+            Role: {account?.role || "Role not found"}
           </Typography>
         </div>
       </div>
