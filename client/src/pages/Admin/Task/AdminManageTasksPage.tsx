@@ -1,5 +1,5 @@
 import React from "react";
-import Task from "components/Admin/ManageTaskCard";
+import TaskCard from "components/Admin/ManageTaskCard";
 import RoundButton from "components/Admin/RoundButton";
 import { AiOutlineLeft } from "react-icons/ai";
 import { useNavigate } from "react-router";
@@ -26,7 +26,7 @@ const AdminManageTasksPage: React.FC = () => {
         />
         <h1 style={{ margin: "0 auto" }}>Manage Tasks</h1>
       </div>
-      <Task />
+      <TaskCard />
       <div style={{ position: "absolute", bottom: "80px", right: "30px" }}>
         <RoundButton onClick={handleClick} />
       </div>
