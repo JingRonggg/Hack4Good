@@ -3,23 +3,31 @@ import React from "react";
 import { FaCoins } from "react-icons/fa";
 import { useNavigate } from "react-router";
 
-const TaskCard = () => {
+interface TaskProps {
+  task: {
+    id: string;
+    label: string;
+    dateline: string;
+    point: number;
+  };
+}
+
+const TaskCard: React.FC<TaskProps> = ({ task }) => {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/detailed-task");
+    navigate(`/detailed-task/${task.id}`);
   }
+
   return (
     <div style={styles.card}>
       <div style={styles.content}>
-        <Typography style={styles.title}>Complete Math Homework</Typography>
-        <p style={styles.subtitle}>Complete by 30 Jan 2025</p>
+        <Typography style={styles.title}>{task.label}</Typography>
+        <p style={styles.subtitle}>Complete by {task.dateline}</p>
         <div style={styles.reward}>
-          <span style={styles.points}>+500</span>{" "}
+          <span style={styles.points}>+{task.point}</span>
           <span style={{ padding: "10px 5px" }}></span>
-          <span>
-            <FaCoins />
-          </span>
+          <FaCoins />
         </div>
       </div>
       <button onClick={handleClick} style={styles.button}>
@@ -39,6 +47,7 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "end",
     backgroundColor: "#fff",
+    marginBottom: "10px",
   },
   content: {
     flexDirection: "column" as "column",
