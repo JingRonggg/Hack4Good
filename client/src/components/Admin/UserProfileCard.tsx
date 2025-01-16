@@ -13,7 +13,7 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ account }) => {
   const navigate = useNavigate();
 
   function handleClick() {
-    navigate("/admin/update-user");
+    navigate("/admin/update-user", { state: { account } });
   }
 
   return (
