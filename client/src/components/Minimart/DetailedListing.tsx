@@ -2,13 +2,45 @@ import { Typography } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import React from "react";
 import { CSSProperties } from "react";
+import axios from 'utils/axios'
 
-const DetailedListing = () => {
-  //   const users = ["user1", "user2"];
+interface InventoryProps {
+  id: string;
+  name: string;
+  points: string;
+  image: string;
+  description: string;
+  quantity: number;
+}
+
+interface UserProps{
+  name: string;
+  points: string;
+}
+
+interface DetailedListingProps {
+  inventory: InventoryProps;
+  user: UserProps
+}
+
+const DetailedListing: React.FC<DetailedListingProps> = ({ inventory, user}) => {
+  const transactionData = {
+    item: inventory.name,
+    status: "pending",
+    username: user.name,
+  };
+  
+  const createTransaction = async () => {
+    try {
+      await axios.post(`/transaction`, transactionData);
+    } catch (error) {
+      console.error("Error updating item:", error);
+    }
+  };
 
   return (
     <div style={styles.pageContainer}>
-      <Typography style={styles.title}>Cup Noodle</Typography>
+      <Typography style={styles.title}>{inventory.name}</Typography>
 
       <div style={styles.scrollableContent}>
         <div style={styles.card}>
@@ -17,42 +49,54 @@ const DetailedListing = () => {
             <CardMedia
               component="img"
               sx={{ maxWidth: "20%", maxHeight: "20%", margin: "auto" }}
-              image="https://m.media-amazon.com/images/I/71eWUsNaolL.jpg"
+              image={inventory.image || "https://m.media-amazon.com/images/I/71eWUsNaolL.jpg"}
               alt="Cup Noodle"
             />
-            <p style={styles.subtitle}>500 Points</p>
+            <p style={styles.subtitle}>0 Points</p>
           </div>
         </div>
+        <Typography style={styles.subtitle}>{inventory.quantity} Remaining</Typography>
         {/* description */}
         <div style={styles.descriptionContainer}>
-          <p>
-            Chicken Flavour. This instant cup noodle contains chicken broth with
-            a savoury flavour and a distinct chicken aroma.
+          <p> {inventory.description}
           </p>
         </div>
 
         {/* action button */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: "16px", // Adjust for spacing between elements
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Typography
-            variant="h6"
-            fontWeight="bold"
-            style={{
-              width: "50%", // Each item gets 50% width
-              textAlign: "left",
-            }}
-          >
-            Your Points: 300 Points
-          </Typography>
-          <button style={styles.button}>Purchase</button>
-        </div>
+        {inventory.quantity === 0 ? (
+          <div style={styles.outOfStockContainer}>
+            <Typography style={styles.outOfStockMessage}>
+              This product is out of stock. You may place a pre-order for the item.
+            </Typography>
+            <div style={styles.actionContainer}>
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              style={{
+                width: "50%",
+                textAlign: "left",
+              }}
+            >
+              Your Balance: {user.points} Points
+            </Typography>
+            <button onClick={createTransaction} style={styles.preOrderButton}>Pre-Order</button>
+          </div>
+            </div>
+        ) : (
+          <div style={styles.actionContainer}>
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              style={{
+                width: "50%",
+                textAlign: "left",
+              }}
+            >
+              Your Balance: {user.points} Points
+            </Typography>
+            <button onClick={createTransaction} style={styles.button}>Purchase</button>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -73,7 +117,7 @@ const styles: { [key: string]: CSSProperties } = {
   },
   card: {
     display: "flex",
-    flexDirection: "row" as "row",
+    flexDirection: "row",
     width: "100%",
     border: "1px solid #ccc",
     borderRadius: "10px",
@@ -87,7 +131,7 @@ const styles: { [key: string]: CSSProperties } = {
   },
   content: {
     display: "flex",
-    flexDirection: "column" as "column",
+    flexDirection: "column",
     width: "fit-content",
     alignItems: "center",
   },
@@ -99,41 +143,44 @@ const styles: { [key: string]: CSSProperties } = {
     fontSize: "15px",
     color: "#777",
   },
-  reward: {
-    backgroundColor: "#f0f0f0",
-    padding: "6px 12px",
-    alignItems: "center",
+  descriptionContainer: {
+    marginTop: "20px",
   },
-  points: {
-    fontSize: "15px",
-    fontWeight: "bold",
-  },
-  fixedButtonContainer: {
-    position: "fixed",
-    bottom: "56px",
-    left: 0,
-    right: 0,
-    padding: "12px",
-    backgroundColor: "#fff",
-    zIndex: 10,
+  actionContainer: {
     display: "flex",
-    gap: "12px",
+    flexDirection: "row",
+    gap: "16px",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  outOfStockContainer: {
+    textAlign: "center",
+    marginTop: "20px",
+  },
+  outOfStockMessage: {
+    fontSize: "16px",    
+    border: "1px solid #ccc",
+    borderRadius: "10px",
+    color: "black",
+    marginBottom: "10px",
   },
   button: {
-    width: "fit-content", // Each item gets 50% width
     backgroundColor: "black",
     color: "white",
     padding: "15px 30px",
     border: "none",
     borderRadius: "4px",
-    textAlign: "center",
     cursor: "pointer",
+    fontWeight: "bold",
   },
-  secondaryButton: {
-    backgroundColor: "gray",
-  },
-  descriptionContainer: {
-    marginTop: "20px",
+  preOrderButton: {
+    backgroundColor: "white",
+    color: "black",
+    padding: "15px 30px",
+    border: "1px solid",
+    borderRadius: "4px",
+    cursor: "pointer",
+    fontWeight: "bold",
   },
 };
 

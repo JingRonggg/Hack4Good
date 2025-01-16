@@ -64,7 +64,7 @@ const routes = [
     admin: false,
   },
   {
-    path: "/detailed-listing",
+    path: "/detailed-listing/:id",
     component: DetailedListingPage,
     protected: true,
     admin: false,
