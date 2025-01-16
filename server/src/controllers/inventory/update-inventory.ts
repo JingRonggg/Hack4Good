@@ -4,10 +4,10 @@ import { Request, Response } from 'express';
 export const updateInventory = async (req: Request ,res: Response) => {
     try{
         const { id } = req.params;
-        const { name, quantity, price, status } = req.body;
+        const { name, quantity, price, status, image, description } = req.body;
         const inventory = await Inventory.findByIdAndUpdate(
             id,
-            { name, quantity, price, status },
+            { name, quantity, price, status, image, description  },
             { new: true, runValidators: true }
         )
 

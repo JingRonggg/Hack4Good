@@ -3,6 +3,7 @@ import createInventory from '../controllers/inventory/create-inventory'
 import deleteInventory from '../controllers/inventory/delete-inventory'
 import getInventory from '../controllers/inventory/get-inventory'
 import getInventoryById from '../controllers/inventory/get-inventory-by-id'
+import getInventoryByName from '../controllers/inventory/get-inventory-by-name'
 import updateInventory from '../controllers/inventory/update-inventory'
 
 const router = express.Router()
@@ -12,6 +13,8 @@ router.get('/', [], getInventory)
 router.post('/', [], createInventory)
 
 router.get('/:id', [], getInventoryById)
+
+router.get('/name/:name', [], getInventoryByName)
 
 router.put('/:id', [], updateInventory)
 

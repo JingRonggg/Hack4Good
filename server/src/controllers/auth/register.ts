@@ -10,6 +10,7 @@ const register: RequestHandler = async (req, res, next) => {
       {
         username: joi.instance.string().required(),
         password: joi.instance.string().required(),
+        role: joi.instance.string().required(),
       },
       req.body
     )
@@ -18,7 +19,7 @@ const register: RequestHandler = async (req, res, next) => {
       return next(validationError)
     }
 
-    const { username, password } = req.body
+    const { username, password, role } = req.body
 
     // Verify account username as unique
     const found = await Account.findOne({ username })
@@ -34,7 +35,7 @@ const register: RequestHandler = async (req, res, next) => {
     const hash = await crypt.hash(password)
 
     // Create account
-    const account = new Account({ username, password: hash })
+    const account = new Account({ username, password: hash, role, points: 0 })
     await account.save()
 
     // Generate access token
