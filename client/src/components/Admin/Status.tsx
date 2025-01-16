@@ -22,7 +22,7 @@ const Status: React.FC<StatusProps> = ({ status }) => {
     "pendingVerification": {
       color: "#FFEFC6",
       textColor: "#DA9200",
-      label: "Pending Verified"
+      label: "Pending Verification"
     },
   };
 
