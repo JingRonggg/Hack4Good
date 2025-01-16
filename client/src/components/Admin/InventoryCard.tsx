@@ -1,18 +1,19 @@
 import React from "react";
 
-const InventoryCard = () => {
-    const actionItems = [
+interface InventoryProps {
+  id: string;
+  name: string;
+  quantity: number;
+}
+
+const InventoryCard: React.FC<InventoryProps> = ({ id, name, quantity }) => { 
+  
+  const actionItems = [
         {
-          id: "3412313",
-          name: "Nissin Cup Noodles",
-          sold: 5,
-          remaining: 95,
-        },
-        {
-          id: "3421353",
-          name: "Mamee",
-          sold: 10,
-          remaining: 190,
+          id: id,
+          name: name,
+          sold: 100-quantity,
+          remaining: quantity,
         },
       ];
 
