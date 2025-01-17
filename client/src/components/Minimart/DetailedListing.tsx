@@ -7,7 +7,7 @@ import axios from 'utils/axios'
 interface InventoryProps {
   id: string;
   name: string;
-  points: string;
+  price: number;
   image: string;
   description: string;
   quantity: number;
@@ -15,7 +15,7 @@ interface InventoryProps {
 
 interface UserProps{
   username: string;
-  points: string;
+  points: number;
 }
 
 interface DetailedListingProps {
@@ -31,12 +31,22 @@ const DetailedListing: React.FC<DetailedListingProps> = ({ inventory, user}) => 
   };
   
   const createTransaction = async () => {
+    if (user.points < inventory.price) {
+      alert("Insufficient points to purchase this item.");
+      return;
+    }
+  
     try {
+      user.points -= inventory.price;
+      await axios.put(`/account/${user.username}`, user);
       await axios.post(`/transaction`, transactionData);
+      alert("Transaction successful!");
     } catch (error) {
       console.error("Error updating item:", error);
+      alert("Transaction failed. Please try again.");
     }
   };
+  
 
   return (
     <div style={styles.pageContainer}>
@@ -52,7 +62,7 @@ const DetailedListing: React.FC<DetailedListingProps> = ({ inventory, user}) => 
               image={inventory.image || "https://m.media-amazon.com/images/I/71eWUsNaolL.jpg"}
               alt="Cup Noodle"
             />
-            <p style={styles.subtitle}>0 Points</p>
+            <p style={styles.subtitle}>{inventory.price} Points</p>
           </div>
         </div>
         <Typography style={styles.subtitle}>{inventory.quantity} Remaining</Typography>
