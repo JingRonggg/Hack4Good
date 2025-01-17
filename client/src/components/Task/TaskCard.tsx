@@ -9,6 +9,7 @@ interface TaskProps {
     label: string;
     dateline: string;
     point: number;
+    users: string[]
   };
 }
 
@@ -23,7 +24,15 @@ const TaskCard: React.FC<TaskProps> = ({ task }) => {
     <div style={styles.card}>
       <div style={styles.content}>
         <Typography style={styles.title}>{task.label}</Typography>
-        <p style={styles.subtitle}>Complete by {task.dateline}</p>
+        <p style={styles.subtitle}>
+          {
+            task.users?.length
+              ? task.users.length === 1
+                ? `1 Participant: ${task.users[0]}`
+                : `${task.users.length} Participants: ${task.users.join(", ")}`
+              : "No active participants."
+          }
+        </p>
         <div style={styles.reward}>
           <span style={styles.points}>+{task.point}</span>
           <span style={{ padding: "10px 5px" }}></span>
