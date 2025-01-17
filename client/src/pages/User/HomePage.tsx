@@ -47,8 +47,8 @@ const HomePage: React.FC = () => {
     
         // Sort transactions by date (newest first)
         transactionsWithPoints.sort((a, b) => b.rawDate.getTime() - a.rawDate.getTime());
-    
-        setTransactions(transactionsWithPoints);
+        const filteredTransactions = transactionsWithPoints.filter((transaction) => transaction.point <= 0);
+        setTransactions(filteredTransactions);
       } catch (error) {
         console.error("Error fetching transactions:", error);
       }

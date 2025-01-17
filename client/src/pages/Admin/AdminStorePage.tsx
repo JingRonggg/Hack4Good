@@ -22,6 +22,7 @@ interface Transaction {
   status: "approved" | "pending" | "declined";
   username: string;
   updatedAt: string;
+  points: number;
 }
 
 const AdminStorePage: React.FC = () => {
@@ -46,7 +47,9 @@ const AdminStorePage: React.FC = () => {
     const fetchApprovedTransaction = async () => {
         try {
             const { data } = await axios.get<Transaction[]>("/transaction/status/approved");
-            setTransaction(data);
+            console.log("data", data);
+            const filteredTransactions = data.filter((transaction: any) => transaction.points <= 0);
+            setTransaction(filteredTransactions);
         } catch (error) {
             console.error("Error fetching inventory:", error);
         }
