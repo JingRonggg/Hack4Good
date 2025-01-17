@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TaskCard from "../../components/Task/TaskCard";
 import Bubble from "../../components/Task/Bubble";
-import axios from "axios"; // Direct axios import
+import axios from "../../utils/axios";
 import { useAuth } from "contexts/AuthContext";
 
 const RewardsPage: React.FC = () => {
@@ -23,7 +23,7 @@ const RewardsPage: React.FC = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/task/");
+      const response = await axios.get("/task/");
       const allTasks = response.data;
 
       // Separate pending tasks where the user IS in the users array
