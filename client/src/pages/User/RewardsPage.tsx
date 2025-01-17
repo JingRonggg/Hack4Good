@@ -68,7 +68,7 @@ const RewardsPage: React.FC = () => {
         }}
       >
         <h1>Tasks</h1>
-        <Bubble />
+        <Bubble points={account?.points ?? 0} />
       </div>
 
       {/* Pending Tasks Section */}
