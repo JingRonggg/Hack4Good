@@ -18,6 +18,7 @@ export interface Transaction {
   item: string
   status: 'approved' | 'pending' | 'declined'
   username: string
+  points: number
 }
 
 export interface Task {

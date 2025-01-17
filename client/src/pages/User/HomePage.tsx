@@ -26,32 +26,34 @@ const HomePage: React.FC = () => {
       try {
         const transactionResponse = await axios.get(`/transaction/username/${account.username}`);
         const transactionsData = transactionResponse.data;
-
+    
         const transactionsWithPoints = await Promise.all(
           transactionsData.map(async (transaction: any) => {
             try {
-              const inventoryResponse = await axios.get(`/inventory/name/${transaction.item}`);
               return {
                 id: transaction._id,
                 label: transaction.item,
                 status: transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1),
                 purchaseDate: new Date(transaction.createdAt).toLocaleDateString("en-GB"),
-                // media: "https://via.placeholder.com/120",
-                point: inventoryResponse.data.points || 0,
+                point: transaction.points || 0,
+                rawDate: new Date(transaction.createdAt),
               };
             } catch (error) {
               console.error(`Error fetching inventory for ${transaction.item}:`, error);
-              return { ...transaction, point: 0 };
+              return { ...transaction, point: 0, rawDate: new Date(transaction.createdAt) };
             }
           })
         );
-
+    
+        // Sort transactions by date (newest first)
+        transactionsWithPoints.sort((a, b) => b.rawDate.getTime() - a.rawDate.getTime());
+    
         setTransactions(transactionsWithPoints);
       } catch (error) {
         console.error("Error fetching transactions:", error);
       }
     };
-
+    
     const fetchTasks = async () => {
       try {
         const taskResponse = await axios.get(`/task/username/${account.username}`);

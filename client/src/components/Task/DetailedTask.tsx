@@ -1,22 +1,78 @@
 import React from "react";
 import { CSSProperties } from "react";
 import checkAccepted from "functions/Task/check-accepted";
+import axios from "utils/axios";
 import { FaCoins } from "react-icons/fa";
+import { useNavigate } from "react-router";
 import { Typography } from "@mui/material";
+interface Task {
+  _id: string;
+  task: string;
+  description: string;
+  points: number;
+  users: string[];
+  status: "completed" | "pendingCompletion" | "pendingVerification";
+  markedCompleted?: Date;
+  verified?: Date;
+}
+interface DetailedTaskProps {
+  task: Task;
+  currentUser: string;
+}
 
-const DetailedTask = () => {
-  const users = ["user1", "user2"];
-  const isAccepted = checkAccepted(users, "user2");
+const DetailedTask: React.FC<DetailedTaskProps> = ({ task, currentUser }) => {
+  const isAccepted = checkAccepted(task.users,currentUser);
+  const navigate = useNavigate();
+
+  const acceptTask = async () => {
+    try {
+      await axios.put(`/task/accept/${task._id}`, { username: currentUser });
+      alert("Task accepted!");
+      navigate("/rewards");
+    } catch (error) {
+      console.error("Error accepting task:", error);
+      alert("Failed to accept the task. Please try again.");
+    }
+  };
+
+  const markAsCompleted = async () => {
+    try {
+      await axios.put(`/task/complete/${task._id}`);
+      alert("Task marked as completed! Your points will be awarded after verification.");
+      navigate("/rewards");
+    } catch (error) {
+      console.error("Error marking task as completed:", error);
+    }
+  };
+
+  const leaveTask = async () => {
+    try {
+      await axios.put(`/task/quit/${task._id}`, { username: currentUser });
+      alert("You have quit the task.");
+      navigate("/rewards");
+    } catch (error) {
+      console.error("Error quitting task:", error);
+      alert("Failed to quit the task. Please try again.");
+    }
+  };
 
   return (
     <div style={styles.pageContainer}>
       <div style={styles.scrollableContent}>
         <div style={styles.card}>
           <div style={styles.content}>
-            <Typography style={styles.title}>Complete Math Homework</Typography>
-            <p style={styles.subtitle}>Complete by 30 Jan 2025</p>
+            <Typography style={styles.title}>{task.task}</Typography>
+            <p style={styles.subtitle}>
+              {
+                task.users?.length
+                  ? task.users.length === 1
+                    ? `1 Participant: ${task.users[0]}`
+                    : `${task.users.length} Participants: ${task.users.join(", ")}`
+                  : "No active participants."
+              }
+            </p>
             <div style={styles.reward}>
-              <span style={styles.points}>+500 </span>
+              <span style={styles.points}>+{task.points} </span>
               <span>
                 <FaCoins />
               </span>
@@ -25,26 +81,26 @@ const DetailedTask = () => {
         </div>
         <div style={styles.descriptionContainer}>
           <p>Task Description:</p>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged.
-          </p>
+          <p>{task.description}</p>
         </div>
       </div>
       <div style={styles.fixedButtonContainer}>
         {isAccepted ? (
           <>
-            <button style={styles.button}>Mark as Completed</button>
-            <button style={{ ...styles.button, ...styles.secondaryButton }}>
+            <button onClick={markAsCompleted} style={styles.button}>
+              Mark as Completed
+            </button>
+            <button
+              onClick={leaveTask}
+              style={{ ...styles.button, ...styles.secondaryButton }}
+            >
               Leave Task
             </button>
           </>
         ) : (
-          <button style={styles.button}>Accept Task</button>
+          <button onClick={acceptTask} style={styles.button}>
+            Accept Task
+          </button>
         )}
       </div>
     </div>
@@ -69,7 +125,6 @@ const styles: { [key: string]: CSSProperties } = {
     border: "1px solid #ccc",
     borderRadius: "10px",
     padding: "12px",
-    paddingRight: "12px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -79,7 +134,7 @@ const styles: { [key: string]: CSSProperties } = {
   },
   content: {
     display: "flex",
-    flexDirection: "column" as "column",
+    flexDirection: "column",
     width: "100%",
   },
   title: {
