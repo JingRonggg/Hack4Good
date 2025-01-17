@@ -6,14 +6,14 @@ import axios from 'utils/axios'
 interface InventoryItem {
   id: string;
   name: string;
-  points: string;
+  price: number;
   image: string;
   description: string
   quantity: number;
 }
 
 interface UserItem {
-  points: string; 
+  points: number; 
   username: string;
 }
 
@@ -29,6 +29,7 @@ const DetailedListingPage: React.FC = () => {
         try {
             const { data } = await axios.get(`/inventory/${id}`);
             setInventory(data);
+            console.log("Inventory data:", data);
             setLoading(false);
         } catch (error) {
             console.error("Error fetching task data:", error);
