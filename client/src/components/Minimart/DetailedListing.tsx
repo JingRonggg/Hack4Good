@@ -27,7 +27,8 @@ const DetailedListing: React.FC<DetailedListingProps> = ({ inventory, user}) => 
   const transactionData = {
     item: inventory.name,
     status: "pending",
-    username: user.username
+    username: user.username,
+    points: -inventory.price
   };
   
   const createTransaction = async () => {

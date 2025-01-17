@@ -30,13 +30,12 @@ const HomePage: React.FC = () => {
         const transactionsWithPoints = await Promise.all(
           transactionsData.map(async (transaction: any) => {
             try {
-              const inventoryResponse = await axios.get(`/inventory/name/${transaction.item}`);
               return {
                 id: transaction._id,
                 label: transaction.item,
                 status: transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1),
                 purchaseDate: new Date(transaction.createdAt).toLocaleDateString("en-GB"),
-                point: inventoryResponse.data.points || 0,
+                point: transaction.points || 0,
                 rawDate: new Date(transaction.createdAt),
               };
             } catch (error) {
