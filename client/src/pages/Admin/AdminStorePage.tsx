@@ -48,7 +48,7 @@ const AdminStorePage: React.FC = () => {
         try {
             const { data } = await axios.get<Transaction[]>("/transaction/status/approved");
             console.log("data", data);
-            const filteredTransactions = data.filter((transaction: any) => transaction.points < 0);
+            const filteredTransactions = data.filter((transaction: any) => transaction.points <= 0);
             setTransaction(filteredTransactions);
         } catch (error) {
             console.error("Error fetching inventory:", error);
