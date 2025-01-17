@@ -33,6 +33,7 @@ const AdminStorePage: React.FC = () => {
           try {
               const { data } = await axios.get<InventoryItem[]>("/inventory");
               setInventory(data);
+              console.log(data);
           } catch (error) {
               console.error("Error fetching inventory:", error);
           }
@@ -112,7 +113,7 @@ const AdminStorePage: React.FC = () => {
               key={item._id}
               name={item.name}
               id={item._id}
-              quantity={100 - item.quantity} 
+              quantity={item.quantity} 
           />
         ))}
 
