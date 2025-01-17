@@ -11,6 +11,7 @@ interface Transaction {
   username: string;
   createdAt: string;
   imageUrl?: string;
+  points: number;
 }
 
 const AdminApprovePurchasesPage: React.FC = () => {
@@ -53,7 +54,26 @@ const AdminApprovePurchasesPage: React.FC = () => {
 
   const handleCancel = async (id: string) => {
     try {
-      await axios.put(`/transaction/${id}`, { status: "declined" });
+      const response = await axios.get<Transaction>(`/transaction/${id}`);
+      const transaction = response.data;
+  
+      const refundPoints = Math.abs(transaction.points);
+  
+      const accountResponse = await axios.get<{ points: number }>(
+        `/account/${transaction.username}`
+      );
+      const currentPoints = accountResponse.data.points;
+  
+      const updatedPoints = currentPoints + refundPoints;
+  
+      await axios.put(`/account/${transaction.username}`, { points: updatedPoints });
+  
+      const updatedItem = `Purchase Declined: ${transaction.item}`;
+      await axios.put(`/transaction/${id}`, { 
+        status: "declined",
+        points: 0,
+        item: updatedItem
+      });
   
       // Remove the canceled transaction from the list
       setTransactions((prev) =>
