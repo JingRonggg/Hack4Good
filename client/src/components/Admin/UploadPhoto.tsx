@@ -1,15 +1,22 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-const UploadPhoto: React.FC = () => {
-  // const [file, setFile] = useState();
+interface UploadPhotoProps {
+  onFileChange: (file: File | null) => void;
+}
+
+const UploadPhoto: React.FC<UploadPhotoProps> = ({ onFileChange }) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      onFileChange(e.target.files[0]);
+    }
+  };
 
   return (
     <Box
       sx={{
         width: "100%",
         height: "200px",
-        border: "2px solid #",
         borderRadius: "10px",
         display: "flex",
         flexDirection: "column",
@@ -22,16 +29,15 @@ const UploadPhoto: React.FC = () => {
       }}
       onClick={() => document.getElementById("file-input")?.click()}
     >
-      <Typography style={{ fontSize: 30, color: "#000" }}> + </Typography>
+      <Typography style={{ fontSize: 30, color: "#000" }}>+</Typography>
       <Typography style={{ fontSize: 30, color: "#000" }}>
-        {" "}
-        Upload Product Photo{" "}
+        Upload Product Photo
       </Typography>
       <input
         id="file-input"
         type="file"
         style={{ display: "none" }}
-        // onClick={(e) => setFile(e.target.files[0])}
+        onChange={handleFileChange}
         accept="image/*"
       />
     </Box>

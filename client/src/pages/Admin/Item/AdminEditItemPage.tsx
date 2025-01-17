@@ -16,6 +16,7 @@ const AdminEditItemPage: React.FC = () => {
     image: "",
     description: "",
   });
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -43,7 +44,30 @@ const AdminEditItemPage: React.FC = () => {
       if (!id) {
         throw new Error("Item ID is missing");
       }
-      await axios.put(`/inventory/${id}`, itemData);
+
+      let uploadImageURL = itemData.image;
+
+      if (imageFile) {
+        const formData = new FormData();
+        formData.append("image", imageFile);
+        try {
+          const uploadResponse = await axios.post("/upload", formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+          });
+          uploadImageURL = uploadResponse.data.filePath;
+        } catch (uploadError) {
+          console.error("Error uploading image:", uploadError);
+          setError("Failed to upload image. Please try again.");
+          return;
+        }
+      }
+
+      const updatedItemData = {
+        ...itemData,
+        image: uploadImageURL,
+      };
+
+      await axios.put(`/inventory/${id}`, updatedItemData);
       navigate("/admin/manage-items");
     } catch (error) {
       console.error("Error updating item:", error);
@@ -90,7 +114,7 @@ const AdminEditItemPage: React.FC = () => {
         />
         <h1 style={{ margin: "0 auto" }}>Edit Item</h1>
       </div>
-      <UploadPhoto />
+      <UploadPhoto onFileChange={setImageFile} />
       <div
         style={{
           display: "flex",

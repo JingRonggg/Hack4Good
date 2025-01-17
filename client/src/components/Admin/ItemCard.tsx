@@ -45,15 +45,10 @@ const ItemCard: React.FC<InventoryProps> = ({
         <div style={styles.leftcontent}>
           <img
             src={
-              image.startsWith("/public")
-                ? `http://localhost:3000/public/${image}`
+              image.startsWith("/image")
+                ? `http://localhost:3000/${image}`
                 : "https://martabak.sg/cdn/shop/products/53_20220618_002214_0007.jpg?v=1655483188"
             }
-            alt={image}
-            style={styles.icon}
-          />
-          <img
-            src={image || "https://m.media-amazon.com/images/I/71eWUsNaolL.jpg"}
             alt={image}
             style={styles.icon}
           />
