@@ -27,32 +27,58 @@ const HomePage: React.FC = () => {
         const transactionResponse = await axios.get(`/transaction/username/${account.username}`);
         const transactionsData = transactionResponse.data;
     
-        const transactionsWithPoints = await Promise.all(
+        const transactionsWithDetails = await Promise.all(
           transactionsData.map(async (transaction: any) => {
             try {
+              // Extract item name, removing "Purchase Declined: " if present
+              let itemName = transaction.item;
+              if (itemName.startsWith("Purchase Declined: ")) {
+                itemName = itemName.replace("Purchase Declined: ", "").trim();
+              }
+    
+              // Fetch inventory details using the extracted item name
+              const inventoryResponse = await axios.get(`/inventory/name/${itemName}`);
+              const inventory = inventoryResponse.data;
+    
               return {
+                id: transaction._id,
+                label: transaction.item, // Keep original transaction label
+                status: transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1),
+                purchaseDate: new Date(transaction.createdAt).toLocaleDateString("en-GB"),
+                point: transaction.points || 0,
+                rawDate: new Date(transaction.createdAt),
+                media: inventory.image, // Add image from inventory details
+                price: inventory.price, // Include price
+                description: inventory.description, // Include description
+              };
+            } catch (error) {
+              console.error(`Error fetching inventory for ${transaction.item}:`, error);
+              return { 
                 id: transaction._id,
                 label: transaction.item,
                 status: transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1),
                 purchaseDate: new Date(transaction.createdAt).toLocaleDateString("en-GB"),
                 point: transaction.points || 0,
                 rawDate: new Date(transaction.createdAt),
+                media: "", // Default empty if fetch fails
+                price: 0,
+                description: "No description available",
               };
-            } catch (error) {
-              console.error(`Error fetching inventory for ${transaction.item}:`, error);
-              return { ...transaction, point: 0, rawDate: new Date(transaction.createdAt) };
             }
           })
         );
     
         // Sort transactions by date (newest first)
-        transactionsWithPoints.sort((a, b) => b.rawDate.getTime() - a.rawDate.getTime());
-        const filteredTransactions = transactionsWithPoints.filter((transaction) => transaction.point <= 0);
+        transactionsWithDetails.sort((a, b) => b.rawDate.getTime() - a.rawDate.getTime());
+    
+        // Filter transactions where points <= 0
+        const filteredTransactions = transactionsWithDetails.filter((transaction) => transaction.point <= 0);
+    
         setTransactions(filteredTransactions);
       } catch (error) {
         console.error("Error fetching transactions:", error);
       }
-    };
+    };    
     
     const fetchTasks = async () => {
       try {
