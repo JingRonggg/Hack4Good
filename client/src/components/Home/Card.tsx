@@ -8,18 +8,21 @@ const HomePageDashboardCard: React.FC = () => {
   const [taskCount, setTaskCount] = useState<number | null>(null);
 
   const getNumberOfTasks = async () => {
-    try{
+    try {
       const { data } = await axios.get(`/task/username/${account?.username}`);
-      setTaskCount(data.length);
+      const pendingTasks = data.filter((task: any) => task.status === "pendingCompletion");
+      setTaskCount(pendingTasks.length);
     } catch (error) {
       console.error(error);
     }
   };
+
   useEffect(() => {
     if (account?.username) {
       getNumberOfTasks();
     }
   }, [account?.username]);
+  
   const actionItems = [
     {
       id: "points",
