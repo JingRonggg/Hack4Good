@@ -14,12 +14,25 @@ interface InventoryProps {
   description: string;
 }
 
-const ItemCard: React.FC<InventoryProps> = ({ id, name, quantity, price, status, image, description }) => {
+const ItemCard: React.FC<InventoryProps> = ({
+  id,
+  name,
+  quantity,
+  price,
+  status,
+  image,
+  description,
+}) => {
   const navigate = useNavigate();
 
   // Define action items
   const actionItems = [
-    { id: "edit", icon: <FaEdit />, label: "Edit Item", route: `/admin/edit-item/${id}` },
+    {
+      id: "edit",
+      icon: <FaEdit />,
+      label: "Edit Item",
+      route: `/admin/edit-item/${id}`,
+    },
   ];
 
   function handleClick(route: string) {
@@ -31,14 +44,23 @@ const ItemCard: React.FC<InventoryProps> = ({ id, name, quantity, price, status,
       <div style={styles.header}>
         <div style={styles.leftcontent}>
           <img
-            src={image || "https://m.media-amazon.com/images/I/71eWUsNaolL.jpg"}
-            alt={name}
+            src={
+              image.startsWith("/image")
+                ? `http://localhost:3000/${image}`
+                : "https://martabak.sg/cdn/shop/products/53_20220618_002214_0007.jpg?v=1655483188"
+            }
+            alt={image}
             style={styles.icon}
           />
+
           <div style={styles.content}>
             <Typography style={styles.title}>{name}</Typography>
-            <Typography style={styles.subtitle}>Quantity: {quantity}</Typography>
-            <Typography style={styles.subtitle}>Price: ${price.toFixed(2)}</Typography>
+            <Typography style={styles.subtitle}>
+              Quantity: {quantity}
+            </Typography>
+            <Typography style={styles.subtitle}>
+              Price: ${price.toFixed(2)}
+            </Typography>
             <Typography style={styles.subtitle}>Status: {status}</Typography>
           </div>
         </div>
