@@ -11,6 +11,7 @@ const RewardsPage: React.FC = () => {
     label: string;
     dateline: string;
     point: number;
+    users: string[]
   }
   
   const [pendingTasks, setPendingTasks] = useState<Task[]>([]);
@@ -36,6 +37,7 @@ const RewardsPage: React.FC = () => {
           label: task.task,
           dateline: new Date(task.createdAt).toLocaleDateString("en-GB"),
           point: task.points || 0,
+          users: task.users || [],
         }));
 
       // Separate available tasks where the user is NOT in the users array
@@ -49,6 +51,7 @@ const RewardsPage: React.FC = () => {
           label: task.task,
           dateline: new Date(task.createdAt).toLocaleDateString("en-GB"),
           point: task.points || 0,
+          users: task.users || [],
         }));
 
       setPendingTasks(userPendingTasks);

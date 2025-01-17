@@ -63,7 +63,13 @@ const DetailedTask: React.FC<DetailedTaskProps> = ({ task, currentUser }) => {
           <div style={styles.content}>
             <Typography style={styles.title}>{task.task}</Typography>
             <p style={styles.subtitle}>
-              Status: {task.status.replace(/([A-Z])/g, " $1")}
+              {
+                task.users?.length
+                  ? task.users.length === 1
+                    ? `1 Participant: ${task.users[0]}`
+                    : `${task.users.length} Participants: ${task.users.join(", ")}`
+                  : "No active participants."
+              }
             </p>
             <div style={styles.reward}>
               <span style={styles.points}>+{task.points} </span>
