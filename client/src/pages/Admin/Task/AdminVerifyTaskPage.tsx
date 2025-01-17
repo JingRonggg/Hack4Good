@@ -36,8 +36,36 @@ const AdminVerifyTaskPage: React.FC = () => {
 
 const handleVerification = async (id: string) => {
   try {
-      await axios.put(`/task/${id}`, {status: "completed"});
+      // Fetch the task details to retrieve users and points
+      const { data: taskDetails } = await axios.get<TaskItem>(`/task/${id}`);
+      const { users, points, task } = taskDetails;
 
+      // Create transactions and update points for each user
+      const transactionPromises = users.map(async (username) => {
+          // Fetch the user's current points
+          const { data: user } = await axios.get(`/account/${username}`);
+
+          // Create a transaction for the user
+          await axios.post('/transaction', {
+              item: task,
+              status: 'approved',
+              username,
+              points
+          });
+
+          // Update the user's points
+          await axios.put(`/account/${username}`, {
+              points: user.points + points
+          });
+      });
+
+      // Wait for all transaction-related operations to complete
+      await Promise.all(transactionPromises);
+
+      // Mark the task as completed
+      await axios.put(`/task/${id}`, { status: 'completed' });
+
+      // Remove the task from the current list
       setTask((prev) => prev.filter((task) => task._id !== id));
   } catch (error) {
       console.error("Error approving task:", error);
