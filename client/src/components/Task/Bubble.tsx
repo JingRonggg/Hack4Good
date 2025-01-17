@@ -2,10 +2,14 @@ import { Typography } from "@mui/material";
 import React from "react";
 import { FaCoins } from "react-icons/fa";
 
-const Bubble = () => {
+interface BubbleProps {
+  points: number;
+}
+
+const Bubble: React.FC<BubbleProps> = ({points}) => {
   return (
     <div style={styles.button}>
-      <Typography style={styles.textContainer}>300 </Typography>
+      <Typography style={styles.textContainer}>{points} </Typography>
       <div style={{ padding: "5px" }}></div>
       <div style={styles.icon}>
         <FaCoins />
